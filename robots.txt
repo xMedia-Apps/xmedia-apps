@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xmedia-apps.com/sitemap.xml
