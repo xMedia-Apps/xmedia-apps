@@ -1,16 +1,17 @@
 :root {
-  --ink: #14201c;
-  --ink-soft: #2a3a34;
-  --muted: #5c6f67;
-  --paper: #f3f6f2;
-  --paper-2: #e7efe8;
-  --accent: #0f7a5f;
-  --accent-deep: #0a5a46;
-  --line: rgba(20, 32, 28, 0.12);
-  --glow: rgba(15, 122, 95, 0.18);
+  --ink: #e8efe9;
+  --ink-soft: #c5d4cb;
+  --muted: #8fa399;
+  --paper: #0b1210;
+  --paper-2: #121c18;
+  --accent: #3ecf9a;
+  --accent-deep: #2aad7f;
+  --line: rgba(232, 239, 233, 0.12);
+  --glow: rgba(62, 207, 154, 0.22);
   --font-display: "Bricolage Grotesque", system-ui, sans-serif;
   --font-body: "Source Sans 3", system-ui, sans-serif;
   --max: 68rem;
+  color-scheme: dark;
 }
 
 *,
@@ -39,10 +40,10 @@ body {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(ellipse 90% 60% at 10% -10%, rgba(15, 122, 95, 0.22), transparent 55%),
-    radial-gradient(ellipse 70% 50% at 95% 15%, rgba(36, 90, 120, 0.14), transparent 50%),
-    radial-gradient(ellipse 80% 40% at 50% 100%, rgba(180, 140, 60, 0.08), transparent 45%),
-    linear-gradient(180deg, #eef4ef 0%, var(--paper) 40%, #e9f0eb 100%);
+    radial-gradient(ellipse 90% 55% at 8% -8%, rgba(62, 207, 154, 0.16), transparent 55%),
+    radial-gradient(ellipse 70% 45% at 95% 10%, rgba(40, 110, 140, 0.14), transparent 50%),
+    radial-gradient(ellipse 80% 40% at 50% 110%, rgba(180, 120, 50, 0.08), transparent 45%),
+    linear-gradient(180deg, #0e1714 0%, var(--paper) 42%, #0a100e 100%);
   animation: atmosphere 18s ease-in-out infinite alternate;
 }
 
@@ -52,18 +53,18 @@ body {
     transform: scale(1);
   }
   to {
-    filter: hue-rotate(8deg) saturate(1.05);
+    filter: hue-rotate(6deg) saturate(1.08);
     transform: scale(1.02);
   }
 }
 
 a {
-  color: var(--accent-deep);
+  color: var(--accent);
   text-underline-offset: 0.15em;
 }
 
 a:hover {
-  color: var(--accent);
+  color: #6fe0b4;
 }
 
 .site-header {
@@ -174,13 +175,13 @@ a:hover {
 
 .btn.primary {
   background: var(--accent);
-  color: #f7fbf8;
+  color: #07110d;
   box-shadow: 0 10px 30px var(--glow);
 }
 
 .btn.primary:hover {
-  background: var(--accent-deep);
-  color: #fff;
+  background: #6fe0b4;
+  color: #04100b;
 }
 
 .btn.ghost {
@@ -191,7 +192,7 @@ a:hover {
 
 .btn.ghost:hover {
   border-color: var(--accent);
-  color: var(--accent-deep);
+  color: var(--accent);
 }
 
 .section {
@@ -202,7 +203,7 @@ a:hover {
 }
 
 .section.alt {
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(18, 28, 24, 0.72);
   border-block: 1px solid var(--line);
   max-width: none;
   padding-inline: max(1.5rem, calc((100% - var(--max)) / 2 + 1.5rem));
@@ -215,6 +216,7 @@ a:hover {
   font-family: var(--font-display);
   letter-spacing: -0.02em;
   line-height: 1.15;
+  color: var(--ink);
 }
 
 .section h2 {
@@ -240,6 +242,7 @@ a:hover {
   padding: 1.1rem 0;
   border-top: 1px solid var(--line);
   max-width: 42rem;
+  color: var(--muted);
 }
 
 .feature-list li:last-child {
@@ -251,6 +254,7 @@ a:hover {
   margin-bottom: 0.25rem;
   font-family: var(--font-display);
   font-size: 1.1rem;
+  color: var(--ink);
 }
 
 .info-grid {
@@ -263,6 +267,7 @@ a:hover {
   margin: 0 0 0.35rem;
   font-family: var(--font-display);
   font-size: 1rem;
+  color: var(--ink);
 }
 
 .info-grid p {
@@ -304,6 +309,11 @@ a:hover {
   font-size: 1.05rem;
 }
 
+.legal p,
+.legal li {
+  color: var(--ink-soft);
+}
+
 .legal ul {
   padding-left: 1.2rem;
 }
@@ -323,6 +333,10 @@ a:hover {
 
 .site-footer a {
   color: var(--ink-soft);
+}
+
+.site-footer a:hover {
+  color: var(--accent);
 }
 
 @media (max-width: 720px) {
