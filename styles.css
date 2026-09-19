@@ -245,7 +245,8 @@ main select {
 }
 
 .stage-title--page {
-  font-size: clamp(2.8rem, 14vw, 8rem);
+  font-size: clamp(2rem, 7.5vw, 3.75rem);
+  letter-spacing: -0.04em;
 }
 
 .stage-title--studio .title-row {
@@ -303,6 +304,17 @@ main select {
   color: var(--fg-dim);
   font-size: 0.92rem;
   line-height: 1.5;
+}
+
+.stage-badge {
+  display: inline-block;
+  margin-top: 0.55rem;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ff8a3d;
 }
 
 .stage-app strong a {
@@ -968,7 +980,7 @@ main select {
   }
 
   .stage-title--page {
-    font-size: clamp(2.4rem, 13vw, 4.5rem);
+    font-size: clamp(1.85rem, 9vw, 3rem);
   }
 
   .stage-tag {
