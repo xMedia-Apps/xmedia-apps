@@ -91,7 +91,12 @@ main,
 .site-header a,
 main a,
 .site-footer a,
-.btn {
+.btn,
+main input,
+main textarea,
+main button,
+main label,
+main select {
   pointer-events: auto;
 }
 
@@ -580,6 +585,238 @@ main a,
   gap: 0.75rem 1rem;
 }
 
+/* Contact form */
+.contact-layout {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 6rem 1.25rem 4rem;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 2.5rem 3rem;
+  align-items: start;
+}
+
+.contact-copy h1 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -0.03em;
+}
+
+.contact-copy p {
+  margin: 0 0 1rem;
+  color: var(--fg-dim);
+  max-width: 28rem;
+}
+
+.contact-meta {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.contact-meta a {
+  color: var(--fg-dim);
+  text-decoration: underline;
+}
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid var(--line);
+  padding: 1.5rem;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #0a0a0a;
+  color: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+  letter-spacing: normal;
+  text-transform: none;
+  padding: 0.75rem 0.85rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 1px solid #fff;
+  border-color: #fff;
+}
+
+.contact-form textarea {
+  min-height: 10rem;
+  resize: vertical;
+}
+
+.contact-form .form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.form-note {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.form-success {
+  border: 1px solid var(--line);
+  padding: 1rem 1.15rem;
+  margin-bottom: 1rem;
+  color: var(--fg-dim);
+}
+
+/* Legal hub */
+.legal-hub {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 6rem 1.25rem 4rem;
+}
+
+.legal-hub h1 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.legal-hub > p {
+  margin: 0 0 2rem;
+  color: var(--fg-dim);
+  max-width: 36rem;
+}
+
+.legal-cards {
+  display: grid;
+  gap: 0;
+}
+
+.legal-cards a {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--line);
+  color: inherit;
+}
+
+.legal-cards a:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.legal-cards a:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.03);
+  padding-inline: 0.5rem;
+}
+
+.legal-cards .num {
+  font-family: var(--font-display);
+  color: var(--muted);
+}
+
+.legal-cards h2 {
+  margin: 0 0 0.25rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+}
+
+.legal-cards p {
+  margin: 0;
+  color: var(--fg-dim);
+  font-size: 0.95rem;
+}
+
+.legal-cards .go {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Studio page */
+.studio-hero {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 6.5rem 1.25rem 2rem;
+}
+
+.studio-hero h1 {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.studio-hero p {
+  margin: 0;
+  max-width: 34rem;
+  color: var(--fg-dim);
+  font-size: 1.05rem;
+}
+
+.studio-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1rem 1.25rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.studio-tile {
+  background: #000;
+  padding: 1.75rem 1.4rem;
+}
+
+.studio-tile .num {
+  display: block;
+  margin-bottom: 0.85rem;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.studio-tile h2 {
+  margin: 0 0 0.55rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+}
+
+.studio-tile p {
+  margin: 0;
+  color: var(--fg-dim);
+  font-size: 0.95rem;
+}
+
+.studio-cta {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 1.25rem 4.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
 @media (max-width: 800px) {
   .pillars {
     grid-template-columns: 1fr;
@@ -591,17 +828,28 @@ main a,
   }
 
   .app-preview a,
-  .app-item {
+  .app-item,
+  .legal-cards a {
     grid-template-columns: 3rem 1fr;
   }
 
   .app-preview .go,
-  .app-meta {
+  .app-meta,
+  .legal-cards .go {
     grid-column: 2;
   }
 
   .logo span {
     display: none;
+  }
+
+  .contact-layout,
+  .studio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    gap: 0.65rem 0.9rem;
   }
 }
 

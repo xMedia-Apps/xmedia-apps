@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kontakt — XMedia Apps</title>
+  <meta name="description" content="Kontaktformular von XMedia Apps." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://xmedia-apps.com/kontakt.html" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=11" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="logo" href="/">
+        <img src="/assets/logo-xm.png" width="28" height="28" alt="" />
+        <span>XMedia Apps</span>
+      </a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="/apps.html">Apps</a>
+        <a href="/studio.html">Studio</a>
+        <a href="/kontakt.html" aria-current="page">Kontakt</a>
+        <a href="/rechtliches.html">Rechtliches</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="contact-layout">
+      <div class="contact-copy">
+        <h1>Kontakt</h1>
+        <p>
+          Fragen zu Apps, Partnerschaften oder Support? Schreib uns —
+          wir melden uns so schnell wie möglich.
+        </p>
+        <p class="contact-meta">
+          Direkt per E-Mail:
+          <a href="mailto:x9x3@pm.me">x9x3@pm.me</a>
+        </p>
+      </div>
+
+      <div>
+        <div class="form-success" id="sent" hidden>
+          Danke — deine Nachricht wurde gesendet. Wir melden uns bei dir.
+        </div>
+
+        <form
+          class="contact-form"
+          action="https://formsubmit.co/x9x3@pm.me"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="Kontaktanfrage — XMedia Apps" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="https://xmedia-apps.com/kontakt.html?sent=1" />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+          <label>
+            Name
+            <input type="text" name="name" required autocomplete="name" />
+          </label>
+          <label>
+            E-Mail
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+          <label>
+            Nachricht
+            <textarea name="message" required></textarea>
+          </label>
+
+          <div class="form-actions">
+            <button class="btn solid" type="submit">Absenden</button>
+            <p class="form-note">Wird an x9x3@pm.me gesendet.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <p>© <span id="y"></span> XMedia Apps</p>
+      <div class="footer-links">
+        <a href="/">Start</a>
+        <a href="/rechtliches.html">Rechtliches</a>
+        <a href="/privacy.html">Datenschutz</a>
+        <a href="/impressum.html">Impressum</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    if (new URLSearchParams(location.search).get("sent") === "1") {
+      var box = document.getElementById("sent");
+      if (box) box.hidden = false;
+    }
+  </script>
+</body>
+</html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Studio — XMedia Apps</title>
-  <meta name="description" content="XMedia Apps Studio — Ansatz für alltagstaugliche Android-Apps." />
+  <meta name="description" content="XMedia Apps Studio — unabhängiges App-Studio für alltagstaugliche Android-Produkte." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://xmedia-apps.com/studio.html" />
@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=10" />
+  <link rel="stylesheet" href="/styles.css?v=11" />
 </head>
 <body>
   <header class="site-header">
@@ -25,43 +25,61 @@
       <nav class="nav" aria-label="Hauptnavigation">
         <a href="/apps.html">Apps</a>
         <a href="/studio.html" aria-current="page">Studio</a>
-        <a href="mailto:x9x3@pm.me">Kontakt</a>
+        <a href="/kontakt.html">Kontakt</a>
+        <a href="/rechtliches.html">Rechtliches</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <header class="page-hero">
-      <h1>Studio</h1>
+    <header class="studio-hero">
+      <h1>Studio für<br />Alltags-Apps</h1>
       <p>
-        Unabhängiges Studio für Android-Apps. Klar, nützlich, modern —
-        Produkte, die im Alltag funktionieren.
+        XMedia Apps ist ein unabhängiges Studio. Wir bauen Android-Produkte mit
+        klarer Bedienung, ruhigem Design und Fokus auf das Wesentliche —
+        von Utility-Tools bis zu neuen Formaten.
       </p>
     </header>
 
-    <section class="section band">
-      <div class="section-head">
-        <h2>Ansatz</h2>
-        <p class="meta">Prinzipien</p>
-      </div>
-      <div class="pillars">
-        <article class="pillar">
-          <span class="num">01</span>
-          <h3>Utility</h3>
-          <p>Tools, die Aufgaben kleiner und übersichtlicher machen.</p>
-        </article>
-        <article class="pillar">
-          <span class="num">02</span>
-          <h3>Lokal zuerst</h3>
-          <p>Inhalte bleiben auf dem Gerät, wo es Sinn ergibt.</p>
-        </article>
-        <article class="pillar">
-          <span class="num">03</span>
-          <h3>Google Play</h3>
-          <p>Veröffentlichung und Updates über unseren Entwicklerauftritt.</p>
-        </article>
-      </div>
+    <section class="studio-grid" aria-label="Studio-Prinzipien">
+      <article class="studio-tile">
+        <span class="num">01 — Produkt</span>
+        <h2>Utility first</h2>
+        <p>
+          Jede App löst eine konkrete Aufgabe. Weniger Features, mehr Klarheit —
+          damit die Nutzung im Alltag schnell und verständlich bleibt.
+        </p>
+      </article>
+      <article class="studio-tile">
+        <span class="num">02 — Daten</span>
+        <h2>Lokal zuerst</h2>
+        <p>
+          Inhalte bleiben auf dem Gerät, wo es Sinn ergibt. Kein unnötiges Konto,
+          keine eigene Cloud für persönliche Eingaben.
+        </p>
+      </article>
+      <article class="studio-tile">
+        <span class="num">03 — Release</span>
+        <h2>Google Play</h2>
+        <p>
+          Veröffentlichung, Updates und Support über unseren Entwicklerauftritt —
+          transparent und nachvollziehbar.
+        </p>
+      </article>
+      <article class="studio-tile">
+        <span class="num">04 — Haltung</span>
+        <h2>Ruhig &amp; modern</h2>
+        <p>
+          Visuell reduziert, technisch sauber. Keine Spielerei um ihrer selbst willen —
+          sondern Produkte, die lange brauchbar bleiben.
+        </p>
+      </article>
     </section>
+
+    <div class="studio-cta">
+      <a class="btn solid" href="/apps.html">Apps ansehen</a>
+      <a class="btn" href="/kontakt.html">Kontakt aufnehmen</a>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -70,9 +88,8 @@
       <div class="footer-links">
         <a href="/">Start</a>
         <a href="/apps.html">Apps</a>
-        <a href="/privacy.html">Datenschutz</a>
-        <a href="/terms.html">AGB</a>
-        <a href="/impressum.html">Impressum</a>
+        <a href="/kontakt.html">Kontakt</a>
+        <a href="/rechtliches.html">Rechtliches</a>
       </div>
     </div>
   </footer>
