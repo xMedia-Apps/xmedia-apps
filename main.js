@@ -39,67 +39,90 @@
     targets: ".star",
     opacity: [
       { value: 0.15, duration: 0 },
-      { value: function () { return 0.25 + Math.random() * 0.75; }, duration: function () { return 800 + Math.random() * 1800; } },
-      { value: 0.12, duration: function () { return 800 + Math.random() * 1800; } },
+      {
+        value: function () {
+          return 0.25 + Math.random() * 0.75;
+        },
+        duration: function () {
+          return 800 + Math.random() * 1800;
+        },
+      },
+      {
+        value: 0.12,
+        duration: function () {
+          return 800 + Math.random() * 1800;
+        },
+      },
     ],
     easing: "linear",
     loop: true,
     delay: anime.stagger(18, { start: 0 }),
   });
 
-  anime
-    .timeline({ easing: "easeOutExpo" })
-    .add({
-      targets: ".stage-eyebrow",
+  var letters = document.querySelectorAll(".stage-title .letter");
+  var tl = anime.timeline({
+    easing: "easeOutCubic",
+    autoplay: true,
+  });
+
+  tl.add({
+    targets: ".stage-eyebrow",
+    opacity: [0, 1],
+    translateY: [10, 0],
+    duration: 500,
+  });
+
+  // Buchstaben bauen sich nacheinander auf — scharf, ohne Blur
+  letters.forEach(function (letter, index) {
+    tl.add(
+      {
+        targets: letter,
+        translateY: ["110%", "0%"],
+        opacity: [0, 1],
+        duration: 480,
+        easing: "easeOutQuart",
+      },
+      280 + index * 160
+    );
+  });
+
+  var afterTitle = 280 + letters.length * 160 + 80;
+
+  tl.add(
+    {
+      targets: ".stage-line",
       opacity: [0, 1],
-      translateY: [12, 0],
-      duration: 700,
-    })
-    .add(
-      {
-        targets: ".stage-title .letter",
-        opacity: [0, 1],
-        translateY: [60, 0],
-        rotateX: [35, 0],
-        duration: 1000,
-        delay: anime.stagger(55),
-      },
-      "-=400"
-    )
-    .add(
-      {
-        targets: ".stage-line",
-        opacity: [0, 1],
-        scaleX: [0, 1],
-        duration: 700,
-      },
-      "-=650"
-    )
+      scaleX: [0, 1],
+      duration: 560,
+      easing: "easeOutExpo",
+    },
+    afterTitle
+  )
     .add(
       {
         targets: ".stage-tag",
         opacity: [0, 1],
-        translateY: [16, 0],
-        duration: 700,
+        translateY: [14, 0],
+        duration: 620,
       },
-      "-=500"
+      "-=280"
     )
     .add(
       {
         targets: ".stage-actions",
         opacity: [0, 1],
-        translateY: [14, 0],
-        duration: 700,
+        translateY: [12, 0],
+        duration: 620,
       },
-      "-=480"
+      "-=420"
     )
     .add(
       {
         targets: ".scroll-hint",
         opacity: [0, 0.7],
-        duration: 600,
+        duration: 500,
       },
-      "-=300"
+      "-=280"
     );
 
   anime({
@@ -108,7 +131,7 @@
     duration: 1800,
     easing: "easeInOutSine",
     loop: true,
-    delay: 2200,
+    delay: 2600,
   });
 
   var reveals = document.querySelectorAll(".reveal");

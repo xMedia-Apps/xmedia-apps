@@ -158,11 +158,20 @@ a:hover {
   user-select: none;
 }
 
+.stage-title .letter-wrap {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 0.9;
+  padding-bottom: 0.06em;
+}
+
 .stage-title .letter {
   display: inline-block;
   color: #fff;
   opacity: 0;
+  transform: translateY(110%);
   will-change: transform, opacity;
+  filter: none !important;
 }
 
 .stage-line {
