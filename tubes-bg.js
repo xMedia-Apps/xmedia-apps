@@ -16,7 +16,7 @@ if (!canvas) {
   canvas.remove();
 } else {
   // Touch devices have no cursor — TubesCursor runs its idle auto-path.
-  const app = TubesCursor(canvas, {
+  TubesCursor(canvas, {
     tubes: {
       count: 8,
       colors: ["#ffffff", "#c8d0ff", "#8fd3ff"],
@@ -34,23 +34,5 @@ if (!canvas) {
       strength: 0.55,
       radius: 0.22,
     },
-  });
-
-  document.body.addEventListener("click", function (e) {
-    if (!app || !app.tubes) return;
-    if (e.target.closest("a, button")) return;
-    app.tubes.setColors(randomColors(3));
-    app.tubes.setLightsColors(randomColors(4));
-  });
-}
-
-function randomColors(count) {
-  return new Array(count).fill(0).map(function () {
-    return (
-      "#" +
-      Math.floor(Math.random() * 16777215)
-        .toString(16)
-        .padStart(6, "0")
-    );
   });
 }
