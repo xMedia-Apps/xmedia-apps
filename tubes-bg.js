@@ -14,9 +14,8 @@ if (!canvas) {
   window.matchMedia("(prefers-reduced-motion: reduce)").matches
 ) {
   canvas.remove();
-} else if (window.matchMedia && window.matchMedia("(pointer: coarse)").matches) {
-  canvas.remove();
 } else {
+  // Touch devices have no cursor — TubesCursor runs its idle auto-path.
   const app = TubesCursor(canvas, {
     tubes: {
       count: 8,
