@@ -9,7 +9,7 @@
   if (typeof anime === "undefined" || reduce) {
     document
       .querySelectorAll(
-        ".letter, .stage-eyebrow, .stage-line, .stage-tag, .stage-actions"
+        ".letter, .stage-eyebrow, .stage-line, .stage-tag, .stage-actions, .stage-copy"
       )
       .forEach(function (el) {
         el.style.opacity = "1";
@@ -26,12 +26,18 @@
     autoplay: true,
   });
 
-  tl.add({
-    targets: ".stage-eyebrow",
-    opacity: [0, 1],
-    translateY: [10, 0],
-    duration: 500,
-  });
+  var eyebrow = document.querySelector(".stage-eyebrow");
+  if (eyebrow) {
+    tl.add({
+      targets: eyebrow,
+      opacity: [0, 1],
+      translateY: [10, 0],
+      duration: 500,
+    });
+  }
+
+  var letterDelay = eyebrow ? 280 : 80;
+  var letterStep = letters.length > 10 ? 70 : 160;
 
   letters.forEach(function (letter, index) {
     tl.add(
@@ -42,11 +48,11 @@
         duration: 480,
         easing: "easeOutQuart",
       },
-      280 + index * 160
+      letterDelay + index * letterStep
     );
   });
 
-  var afterTitle = 280 + letters.length * 160 + 80;
+  var afterTitle = letterDelay + letters.length * letterStep + 80;
 
   tl.add(
     {
@@ -57,17 +63,18 @@
       easing: "easeOutExpo",
     },
     afterTitle
-  )
-    .add(
-      {
-        targets: ".stage-tag",
-        opacity: [0, 1],
-        translateY: [14, 0],
-        duration: 620,
-      },
-      "-=280"
-    )
-    .add(
+  ).add(
+    {
+      targets: ".stage-tag, .stage-copy",
+      opacity: [0, 1],
+      translateY: [14, 0],
+      duration: 620,
+    },
+    "-=280"
+  );
+
+  if (document.querySelector(".stage-actions")) {
+    tl.add(
       {
         targets: ".stage-actions",
         opacity: [0, 1],
@@ -76,4 +83,5 @@
       },
       "-=420"
     );
+  }
 })();

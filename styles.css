@@ -33,12 +33,15 @@ body {
 }
 
 body.page-home,
-body.page-home html {
+body.page-studio,
+body.page-home html,
+body.page-studio html {
   height: 100%;
   overflow: hidden;
 }
 
-body.page-home {
+body.page-home,
+body.page-studio {
   height: 100svh;
   overflow: hidden;
   touch-action: none;
@@ -46,7 +49,10 @@ body.page-home {
 
 body.page-home .site-header a,
 body.page-home main a,
-body.page-home .btn {
+body.page-home .btn,
+body.page-studio .site-header a,
+body.page-studio main a,
+body.page-studio .btn {
   touch-action: manipulation;
 }
 
@@ -225,6 +231,39 @@ main select {
   will-change: transform, opacity;
   filter: none !important;
 }
+
+.stage-title--studio {
+  flex-direction: column;
+  align-items: center;
+  gap: 0.08em;
+  font-size: clamp(2rem, 9.5vw, 5.8rem);
+  letter-spacing: -0.05em;
+  text-transform: none;
+}
+
+.stage-title--studio .title-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.stage-title--studio .letter-space {
+  display: inline-block;
+  width: 0.28em;
+}
+
+.stage-copy {
+  max-width: 34rem;
+  margin: 0 auto;
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.55;
+  color: var(--fg-dim);
+}
+
+/* Studio page (legacy tiles removed — stage layout) */
 
 .stage-line {
   width: min(220px, 40vw);
@@ -758,72 +797,6 @@ main select {
 }
 
 /* Studio page */
-.studio-hero {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 6.5rem 1.25rem 2rem;
-}
-
-.studio-hero h1 {
-  margin: 0 0 0.85rem;
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 6vw, 3.8rem);
-  letter-spacing: -0.04em;
-  line-height: 0.95;
-}
-
-.studio-hero p {
-  margin: 0;
-  max-width: 34rem;
-  color: var(--fg-dim);
-  font-size: 1.05rem;
-}
-
-.studio-grid {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 1rem 1.25rem 4rem;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-}
-
-.studio-tile {
-  background: #000;
-  padding: 1.75rem 1.4rem;
-}
-
-.studio-tile .num {
-  display: block;
-  margin-bottom: 0.85rem;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.studio-tile h2 {
-  margin: 0 0 0.55rem;
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-}
-
-.studio-tile p {
-  margin: 0;
-  color: var(--fg-dim);
-  font-size: 0.95rem;
-}
-
-.studio-cta {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 1.25rem 4.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
 
 @media (max-width: 800px) {
   .pillars {
@@ -851,8 +824,7 @@ main select {
     display: none;
   }
 
-  .contact-layout,
-  .studio-grid {
+  .contact-layout {
     grid-template-columns: 1fr;
   }
 
@@ -869,6 +841,11 @@ main select {
     font-size: clamp(2.35rem, 12.8vw, 4.8rem);
     letter-spacing: -0.075em;
   }
+
+  .stage-title--studio {
+    font-size: clamp(1.55rem, 8.2vw, 3.2rem);
+    letter-spacing: -0.06em;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -876,6 +853,7 @@ main select {
   .stage-eyebrow,
   .stage-line,
   .stage-tag,
+  .stage-copy,
   .stage-actions,
   .scroll-hint,
   .reveal {
