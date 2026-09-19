@@ -339,12 +339,41 @@ main select {
 
 .stage-app strong a {
   color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
+  text-decoration: none;
 }
 
-.stage-app strong a:hover {
+.stage-app .stage-title-link:hover {
   opacity: 0.75;
+}
+
+.stage-app-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.stage-app-actions .btn {
+  min-height: 1.85rem;
+  padding: 0 0.7rem;
+  font-size: 10px;
+}
+
+.btn-disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.stage-soon {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .stage--projects {
