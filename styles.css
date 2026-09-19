@@ -237,12 +237,10 @@ main select {
   gap: 0.08em;
   font-size: clamp(2rem, 9.5vw, 5.8rem);
   letter-spacing: -0.05em;
-  text-transform: none;
 }
 
 .stage-title--page {
   font-size: clamp(2.8rem, 14vw, 8rem);
-  text-transform: none;
 }
 
 .stage-title--studio .title-row {
