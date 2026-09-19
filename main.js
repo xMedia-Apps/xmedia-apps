@@ -6,27 +6,10 @@
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  var starsRoot = document.getElementById("stars");
-  if (starsRoot) {
-    var count = window.innerWidth < 700 ? 48 : 90;
-    var frag = document.createDocumentFragment();
-    for (var i = 0; i < count; i++) {
-      var star = document.createElement("span");
-      star.className = "star";
-      star.style.left = Math.random() * 100 + "%";
-      star.style.top = Math.random() * 100 + "%";
-      var size = Math.random() > 0.82 ? 2 : 1;
-      star.style.width = size + "px";
-      star.style.height = size + "px";
-      frag.appendChild(star);
-    }
-    starsRoot.appendChild(frag);
-  }
-
   if (typeof anime === "undefined" || reduce) {
     document
       .querySelectorAll(
-        ".letter, .stage-eyebrow, .stage-line, .stage-tag, .stage-actions, .scroll-hint, .reveal, .star"
+        ".letter, .stage-eyebrow, .stage-line, .stage-tag, .stage-actions, .scroll-hint, .reveal"
       )
       .forEach(function (el) {
         el.style.opacity = "1";
@@ -34,30 +17,6 @@
       });
     return;
   }
-
-  anime({
-    targets: ".star",
-    opacity: [
-      { value: 0.15, duration: 0 },
-      {
-        value: function () {
-          return 0.25 + Math.random() * 0.75;
-        },
-        duration: function () {
-          return 800 + Math.random() * 1800;
-        },
-      },
-      {
-        value: 0.12,
-        duration: function () {
-          return 800 + Math.random() * 1800;
-        },
-      },
-    ],
-    easing: "linear",
-    loop: true,
-    delay: anime.stagger(18, { start: 0 }),
-  });
 
   var letters = document.querySelectorAll(".stage-title .letter");
   var tl = anime.timeline({
@@ -72,7 +31,6 @@
     duration: 500,
   });
 
-  // Buchstaben bauen sich nacheinander auf — scharf, ohne Blur
   letters.forEach(function (letter, index) {
     tl.add(
       {
