@@ -4,39 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Apps — XMedia Apps</title>
-  <meta name="description" content="Apps von XMedia Apps: Stop It und Bauchgefühl — alltagstaugliche Android-Apps mit lokaler Datenspeicherung." />
+  <meta name="description" content="Apps von XMedia Apps: Stop It und Bauchgefühl." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://xmedia-apps.com/apps.html" />
   <link rel="icon" href="/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=3" />
 </head>
 <body>
   <div class="bg" aria-hidden="true"></div>
 
   <header class="site-header">
-    <a class="logo" href="/">
-      <img src="/assets/logo-xm.png" width="36" height="36" alt="" />
-      <span>XMedia Apps</span>
-    </a>
-    <nav class="nav" aria-label="Hauptnavigation">
-      <a href="/apps.html" aria-current="page">Apps</a>
-      <a href="/#studio">Studio</a>
-      <a href="/privacy.html">Datenschutz</a>
-      <a href="/impressum.html">Impressum</a>
-    </nav>
+    <div class="site-header-inner">
+      <a class="logo" href="/">
+        <img src="/assets/logo-xm.png" width="34" height="34" alt="" />
+        <span>XMedia Apps</span>
+      </a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="/apps.html" aria-current="page">Apps</a>
+        <a href="/#studio">Studio</a>
+        <a href="mailto:x9x3@pm.me">Kontakt</a>
+      </nav>
+    </div>
   </header>
 
   <main>
     <header class="page-hero">
       <h1>Apps</h1>
       <p>
-        Aktuelle Produkte von XMedia Apps. Inhalte bleiben auf dem Gerät —
-        Werbung läuft über Google AdMob. Details zum Datenschutz stehen in der
-        <a href="/privacy.html">Datenschutzerklärung</a>.
+        Aktuelle Produkte. App-Inhalte werden lokal gespeichert; Werbung läuft über AdMob.
+        Details: <a href="/privacy.html">Datenschutz</a>.
       </p>
     </header>
 
@@ -69,25 +69,41 @@
     </section>
 
     <section class="section band">
-      <h2>Rechtliches</h2>
-      <p class="section-intro">
-        Für beide Apps gelten dieselben öffentlichen Angaben:
-      </p>
-      <ul class="feature-list">
-        <li>
-          <strong>Datenschutz</strong>
-          <a href="https://xmedia-apps.com/privacy.html">https://xmedia-apps.com/privacy.html</a>
-        </li>
-        <li>
-          <strong>Nutzungsbedingungen</strong>
-          <a href="https://xmedia-apps.com/terms.html">https://xmedia-apps.com/terms.html</a>
-        </li>
-      </ul>
+      <div class="section-head">
+        <h2>Rechtliches</h2>
+        <p class="meta">Für beide Apps</p>
+      </div>
+      <div class="app-preview">
+        <a href="/privacy.html">
+          <span class="num">A</span>
+          <div>
+            <h3>Datenschutz</h3>
+            <p>https://xmedia-apps.com/privacy.html</p>
+          </div>
+          <span class="go">Öffnen →</span>
+        </a>
+        <a href="/terms.html">
+          <span class="num">B</span>
+          <div>
+            <h3>Nutzungsbedingungen</h3>
+            <p>https://xmedia-apps.com/terms.html</p>
+          </div>
+          <span class="go">Öffnen →</span>
+        </a>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="y"></span> XMedia Apps · <a href="/">Start</a> · <a href="/privacy.html">Datenschutz</a> · <a href="/terms.html">AGB</a> · <a href="/impressum.html">Impressum</a></p>
+    <div class="site-footer-inner">
+      <p>© <span id="y"></span> XMedia Apps</p>
+      <div class="footer-links">
+        <a href="/">Start</a>
+        <a href="/privacy.html">Datenschutz</a>
+        <a href="/terms.html">AGB</a>
+        <a href="/impressum.html">Impressum</a>
+      </div>
+    </div>
   </footer>
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();

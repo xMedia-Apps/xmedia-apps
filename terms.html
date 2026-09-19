@@ -11,23 +11,24 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=3" />
 </head>
 <body>
   <div class="bg" aria-hidden="true"></div>
 
   <header class="site-header">
-    <a class="logo" href="/">
-      <img src="/assets/logo-xm.png" width="36" height="36" alt="" />
-      <span>XMedia Apps</span>
-    </a>
-    <nav class="nav" aria-label="Hauptnavigation">
-      <a href="/apps.html">Apps</a>
-      <a href="/privacy.html">Datenschutz</a>
-      <a href="/terms.html" aria-current="page">AGB</a>
-      <a href="/impressum.html">Impressum</a>
-    </nav>
+    <div class="site-header-inner">
+      <a class="logo" href="/">
+        <img src="/assets/logo-xm.png" width="34" height="34" alt="" />
+        <span>XMedia Apps</span>
+      </a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="/apps.html">Apps</a>
+        <a href="/#studio">Studio</a>
+        <a href="mailto:x9x3@pm.me">Kontakt</a>
+      </nav>
+    </div>
   </header>
 
   <main class="legal">
@@ -178,7 +179,15 @@
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="y"></span> XMedia Apps · <a href="/">Start</a> · <a href="/apps.html">Apps</a> · <a href="/privacy.html">Datenschutz</a> · <a href="/impressum.html">Impressum</a></p>
+    <div class="site-footer-inner">
+      <p>© <span id="y"></span> XMedia Apps</p>
+      <div class="footer-links">
+        <a href="/">Start</a>
+        <a href="/apps.html">Apps</a>
+        <a href="/privacy.html">Datenschutz</a>
+        <a href="/impressum.html">Impressum</a>
+      </div>
+    </div>
   </footer>
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
