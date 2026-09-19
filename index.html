@@ -6,19 +6,22 @@
   <title>XMedia Apps — App Studio</title>
   <meta name="description" content="XMedia Apps — unabhängiges Studio für alltagstaugliche Apps und digitale Produkte." />
   <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://xmedia-apps.com/" />
   <link rel="icon" href="/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=4" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=5" />
 </head>
 <body>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+
   <header class="site-header">
     <div class="site-header-inner">
       <a class="logo" href="/">
-        <img src="/assets/logo-xm.png" width="32" height="32" alt="" />
+        <img src="/assets/logo-xm.png" width="28" height="28" alt="" />
         <span>XMedia Apps</span>
       </a>
       <nav class="nav" aria-label="Hauptnavigation">
@@ -30,39 +33,19 @@
   </header>
 
   <main>
-    <section class="hero-mega">
-      <h1 class="mega-type" aria-label="XMedia">
+    <section class="stage">
+      <p class="stage-eyebrow">Digital App Studio</p>
+      <h1 class="stage-title" aria-label="XMedia">
         <span class="letter">X</span><span class="letter">M</span><span class="letter">E</span><span class="letter">D</span><span class="letter">I</span><span class="letter">A</span>
       </h1>
-      <p class="mega-sub">Apps für den Alltag.</p>
-      <div class="hero-bottom">
-        <p class="lede">
-          Unabhängiges App-Studio. Klar, nützlich, modern —
-          von Utility-Tools bis zu neuen Produktideen fürs Smartphone.
-        </p>
-        <div class="cta-row">
-          <a class="btn primary" href="/apps.html">Apps ansehen</a>
-          <a class="btn ghost" href="mailto:x9x3@pm.me">Kontakt</a>
-        </div>
+      <div class="stage-line" aria-hidden="true"></div>
+      <p class="stage-tag">Apps für den Alltag.</p>
+      <div class="stage-actions">
+        <a class="btn solid" href="/apps.html">Apps</a>
+        <a class="btn" href="mailto:x9x3@pm.me">Kontakt</a>
       </div>
+      <p class="scroll-hint">Scroll</p>
     </section>
-
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>XMedia Apps</span>
-        <span>Stop It</span>
-        <span>Bauchgefühl</span>
-        <span>Android</span>
-        <span>Google Play</span>
-        <span>Utility</span>
-        <span>XMedia Apps</span>
-        <span>Stop It</span>
-        <span>Bauchgefühl</span>
-        <span>Android</span>
-        <span>Google Play</span>
-        <span>Utility</span>
-      </div>
-    </div>
 
     <section id="studio" class="section band">
       <div class="section-head reveal">
@@ -70,7 +53,8 @@
         <p class="meta">Ansatz</p>
       </div>
       <p class="section-intro reveal">
-        Weniger Lärm, mehr Klarheit — Produkte, die im Alltag funktionieren.
+        Unabhängiges Studio für Android-Apps. Klar, nützlich, modern —
+        Produkte, die im Alltag funktionieren.
       </p>
       <div class="pillars">
         <article class="pillar reveal">
@@ -130,6 +114,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
-  <script src="/main.js?v=4"></script>
+  <script src="/main.js?v=5"></script>
 </body>
 </html>
