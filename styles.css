@@ -134,6 +134,7 @@ main select {
 .logo {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
   gap: 0.65rem;
   color: #fff;
 }
@@ -156,7 +157,9 @@ main select {
 .nav {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 0.85rem 1.25rem;
+  min-width: 0;
 }
 
 .nav a {
@@ -164,6 +167,7 @@ main select {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--fg-dim);
+  white-space: nowrap;
 }
 
 .nav a:hover,
@@ -871,22 +875,35 @@ main select {
     grid-column: 2;
   }
 
+  .site-header-inner {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.7rem 0.85rem;
+    padding: 0.85rem 1rem;
+  }
+
   .logo span {
     display: none;
+  }
+
+  .nav {
+    flex: 1 1 100%;
+    justify-content: flex-start;
+    gap: 0.5rem 0.85rem;
+    row-gap: 0.45rem;
+  }
+
+  .nav a {
+    font-size: 10px;
+    letter-spacing: 0.06em;
   }
 
   .contact-layout {
     grid-template-columns: 1fr;
   }
 
-  .nav {
-    font-size: 10px;
-    gap: 0.55rem 0.75rem;
-  }
-
   .stage {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 6.5rem 1rem 3rem;
   }
 
   .stage-title {
@@ -901,6 +918,11 @@ main select {
 
   .stage-title--page {
     font-size: clamp(2.4rem, 13vw, 4.5rem);
+  }
+
+  .stage-tag {
+    font-size: clamp(0.9rem, 3.6vw, 1.2rem);
+    padding-inline: 0.25rem;
   }
 }
 
