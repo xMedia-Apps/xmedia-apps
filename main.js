@@ -9,7 +9,7 @@
   if (typeof anime === "undefined" || reduce) {
     document
       .querySelectorAll(
-        ".letter, .stage-eyebrow, .stage-line, .stage-tag, .stage-actions, .stage-copy"
+        ".letter, .stage-eyebrow, .stage-line, .stage-tag, .stage-actions, .stage-copy, .stage-panel"
       )
       .forEach(function (el) {
         el.style.opacity = "1";
@@ -82,6 +82,18 @@
         duration: 620,
       },
       "-=420"
+    );
+  }
+
+  if (document.querySelector(".stage-panel")) {
+    tl.add(
+      {
+        targets: ".stage-panel",
+        opacity: [0, 1],
+        translateY: [16, 0],
+        duration: 680,
+      },
+      "-=360"
     );
   }
 })();

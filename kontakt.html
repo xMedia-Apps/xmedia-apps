@@ -13,9 +13,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=11" />
+  <link rel="stylesheet" href="/styles.css?v=15" />
 </head>
-<body>
+<body class="page-stage page-kontakt">
+  <canvas id="tubes-bg" aria-hidden="true"></canvas>
+
   <header class="site-header">
     <div class="site-header-inner">
       <a class="logo" href="/">
@@ -23,6 +25,7 @@
         <span>XMedia Apps</span>
       </a>
       <nav class="nav" aria-label="Hauptnavigation">
+        <a href="/">Start</a>
         <a href="/apps.html">Apps</a>
         <a href="/studio.html">Studio</a>
         <a href="/kontakt.html" aria-current="page">Kontakt</a>
@@ -32,20 +35,17 @@
   </header>
 
   <main>
-    <div class="contact-layout">
-      <div class="contact-copy">
-        <h1>Kontakt</h1>
-        <p>
-          Fragen zu Apps, Partnerschaften oder Support? Schreib uns —
-          wir melden uns so schnell wie möglich.
-        </p>
-        <p class="contact-meta">
-          Direkt per E-Mail:
-          <a href="mailto:x9x3@pm.me">x9x3@pm.me</a>
-        </p>
-      </div>
+    <section class="stage stage--form">
+      <h1 class="stage-title stage-title--page" aria-label="Kontakt">
+        <span class="letter-wrap"><span class="letter">K</span></span><span class="letter-wrap"><span class="letter">o</span></span><span class="letter-wrap"><span class="letter">n</span></span><span class="letter-wrap"><span class="letter">t</span></span><span class="letter-wrap"><span class="letter">a</span></span><span class="letter-wrap"><span class="letter">k</span></span><span class="letter-wrap"><span class="letter">t</span></span>
+      </h1>
+      <div class="stage-line" aria-hidden="true"></div>
+      <p class="stage-tag stage-copy">
+        Fragen zu Apps, Partnerschaften oder Support? Schreib uns —
+        oder direkt an <a href="mailto:x9x3@pm.me">x9x3@pm.me</a>.
+      </p>
 
-      <div>
+      <div class="stage-panel stage-form-wrap">
         <div class="form-success" id="sent" hidden>
           Danke — deine Nachricht wurde gesendet. Wir melden uns bei dir.
         </div>
@@ -83,22 +83,13 @@
           </div>
         </form>
       </div>
-    </div>
+    </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="site-footer-inner">
-      <p>© <span id="y"></span> XMedia Apps</p>
-      <div class="footer-links">
-        <a href="/">Start</a>
-        <a href="/rechtliches.html">Rechtliches</a>
-        <a href="/privacy.html">Datenschutz</a>
-        <a href="/impressum.html">Impressum</a>
-      </div>
-    </div>
-  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="/main.js?v=12"></script>
+  <script type="module" src="/tubes-bg.js?v=11"></script>
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
     if (new URLSearchParams(location.search).get("sent") === "1") {
       var box = document.getElementById("sent");
       if (box) box.hidden = false;

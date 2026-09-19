@@ -13,9 +13,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css?v=11" />
+  <link rel="stylesheet" href="/styles.css?v=15" />
 </head>
-<body>
+<body class="page-stage page-apps">
+  <canvas id="tubes-bg" aria-hidden="true"></canvas>
+
   <header class="site-header">
     <div class="site-header-inner">
       <a class="logo" href="/">
@@ -23,6 +25,7 @@
         <span>XMedia Apps</span>
       </a>
       <nav class="nav" aria-label="Hauptnavigation">
+        <a href="/">Start</a>
         <a href="/apps.html" aria-current="page">Apps</a>
         <a href="/studio.html">Studio</a>
         <a href="/kontakt.html">Kontakt</a>
@@ -32,82 +35,35 @@
   </header>
 
   <main>
-    <header class="page-hero">
-      <h1>Apps</h1>
-      <p>
+    <section class="stage">
+      <h1 class="stage-title stage-title--page" aria-label="Apps">
+        <span class="letter-wrap"><span class="letter">A</span></span><span class="letter-wrap"><span class="letter">p</span></span><span class="letter-wrap"><span class="letter">p</span></span><span class="letter-wrap"><span class="letter">s</span></span>
+      </h1>
+      <div class="stage-line" aria-hidden="true"></div>
+      <p class="stage-tag stage-copy">
         Aktuelle Produkte. App-Inhalte werden lokal gespeichert; Werbung läuft über AdMob.
-        Details: <a href="/privacy.html">Datenschutz</a>.
       </p>
-    </header>
-
-    <section class="section" aria-label="App-Liste">
-      <div class="app-list">
-        <article class="app-item">
-          <span class="app-index">01</span>
-          <div>
-            <h2>Stop It</h2>
-            <p>
-              Aufhören mit Rauchen, Alkohol, Drogen &amp; Kiffen — Check-in, Fortschritt,
-              Lebensbaum und lokale Datenspeicherung.
-            </p>
-          </div>
-          <span class="app-meta">Android</span>
+      <div class="stage-panel">
+        <article class="stage-app">
+          <strong>Stop It</strong>
+          <span>
+            Aufhören mit Rauchen, Alkohol, Drogen &amp; Kiffen — Check-in, Fortschritt,
+            Lebensbaum und lokale Datenspeicherung.
+          </span>
         </article>
-
-        <article class="app-item">
-          <span class="app-index">02</span>
-          <div>
-            <h2>Bauchgefühl</h2>
-            <p>
-              Checkliste für werdende Eltern — Erstausstattung, Kliniktasche, Fristen,
-              Wehenzähler und lokale Datenspeicherung.
-            </p>
-          </div>
-          <span class="app-meta">Android</span>
+        <article class="stage-app">
+          <strong>Bauchgefühl</strong>
+          <span>
+            Checkliste für werdende Eltern — Erstausstattung, Kliniktasche, Fristen,
+            Wehenzähler und lokale Datenspeicherung.
+          </span>
         </article>
-      </div>
-    </section>
-
-    <section class="section band">
-      <div class="section-head">
-        <h2>Rechtliches</h2>
-        <p class="meta">Für beide Apps</p>
-      </div>
-      <div class="app-preview">
-        <a href="/privacy.html">
-          <span class="num">A</span>
-          <div>
-            <h3>Datenschutz</h3>
-            <p>https://xmedia-apps.com/privacy.html</p>
-          </div>
-          <span class="go">Öffnen →</span>
-        </a>
-        <a href="/terms.html">
-          <span class="num">B</span>
-          <div>
-            <h3>Nutzungsbedingungen</h3>
-            <p>https://xmedia-apps.com/terms.html</p>
-          </div>
-          <span class="go">Öffnen →</span>
-        </a>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="site-footer-inner">
-      <p>© <span id="y"></span> XMedia Apps</p>
-      <div class="footer-links">
-        <a href="/">Start</a>
-        <a href="/studio.html">Studio</a>
-        <a href="/privacy.html">Datenschutz</a>
-        <a href="/terms.html">AGB</a>
-        <a href="/impressum.html">Impressum</a>
-      </div>
-    </div>
-  </footer>
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="/main.js?v=12"></script>
+  <script type="module" src="/tubes-bg.js?v=11"></script>
 </body>
 </html>
