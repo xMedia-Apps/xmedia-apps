@@ -20,10 +20,17 @@ if (!canvas) {
   const app = TubesCursor(canvas, {
     tubes: {
       colors: ["#ffffff", "#c8d0ff", "#8fd3ff"],
+      minRadius: 0.002,
+      maxRadius: 0.018,
       lights: {
-        intensity: 180,
+        intensity: 160,
         colors: ["#ffffff", "#a8b4ff", "#60aed5", "#e8e8e8"],
       },
+    },
+    bloom: {
+      threshold: 0,
+      strength: 1.05,
+      radius: 0.35,
     },
   });
 
