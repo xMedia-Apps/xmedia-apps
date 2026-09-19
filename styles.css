@@ -882,7 +882,8 @@ main select {
   }
 
   .nav {
-    gap: 0.65rem 0.9rem;
+    font-size: 10px;
+    gap: 0.55rem 0.75rem;
   }
 
   .stage {
@@ -902,11 +903,6 @@ main select {
 
   .stage-title--page {
     font-size: clamp(2.4rem, 13vw, 4.5rem);
-  }
-
-  .nav {
-    font-size: 10px;
-    gap: 0.55rem 0.75rem;
   }
 }
 
