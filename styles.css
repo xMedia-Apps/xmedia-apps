@@ -306,15 +306,35 @@ main select {
   line-height: 1.5;
 }
 
-.stage-badge {
-  display: inline-block;
+.stage-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
   margin-top: 0.55rem;
+}
+
+.stage-app .stage-badge {
+  display: inline-block;
+  margin-top: 0;
   font-family: var(--font-display);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #ff8a3d;
+  line-height: 1.2;
+}
+
+.stage-app .stage-badge-sep {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.stage-app .stage-badge-live {
+  color: #3ddc84;
 }
 
 .stage-app strong a {
