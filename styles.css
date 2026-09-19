@@ -355,9 +355,16 @@ main select {
 }
 
 .stage-app-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   min-height: 1.85rem;
-  padding: 0 0.7rem;
+  height: 1.85rem;
+  padding: 0 0.75rem;
   font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.1em;
 }
 
 .btn-disabled,
