@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Studio — XMedia Apps</title>
+  <meta name="description" content="XMedia Apps Studio — Ansatz für alltagstaugliche Android-Apps." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="canonical" href="https://xmedia-apps.com/studio.html" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=10" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="logo" href="/">
+        <img src="/assets/logo-xm.png" width="28" height="28" alt="" />
+        <span>XMedia Apps</span>
+      </a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="/apps.html">Apps</a>
+        <a href="/studio.html" aria-current="page">Studio</a>
+        <a href="mailto:x9x3@pm.me">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <header class="page-hero">
+      <h1>Studio</h1>
+      <p>
+        Unabhängiges Studio für Android-Apps. Klar, nützlich, modern —
+        Produkte, die im Alltag funktionieren.
+      </p>
+    </header>
+
+    <section class="section band">
+      <div class="section-head">
+        <h2>Ansatz</h2>
+        <p class="meta">Prinzipien</p>
+      </div>
+      <div class="pillars">
+        <article class="pillar">
+          <span class="num">01</span>
+          <h3>Utility</h3>
+          <p>Tools, die Aufgaben kleiner und übersichtlicher machen.</p>
+        </article>
+        <article class="pillar">
+          <span class="num">02</span>
+          <h3>Lokal zuerst</h3>
+          <p>Inhalte bleiben auf dem Gerät, wo es Sinn ergibt.</p>
+        </article>
+        <article class="pillar">
+          <span class="num">03</span>
+          <h3>Google Play</h3>
+          <p>Veröffentlichung und Updates über unseren Entwicklerauftritt.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <p>© <span id="y"></span> XMedia Apps</p>
+      <div class="footer-links">
+        <a href="/">Start</a>
+        <a href="/apps.html">Apps</a>
+        <a href="/privacy.html">Datenschutz</a>
+        <a href="/terms.html">AGB</a>
+        <a href="/impressum.html">Impressum</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

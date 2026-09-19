@@ -32,6 +32,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body.page-home,
+body.page-home html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body.page-home {
+  height: 100svh;
+  overflow: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -148,7 +159,9 @@ main a,
 .stage {
   position: relative;
   z-index: 1;
+  height: 100svh;
   min-height: 100svh;
+  max-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -156,6 +169,7 @@ main a,
   gap: clamp(12px, 1.2vw, 20px);
   padding: 5rem 1.25rem 3rem;
   text-align: center;
+  overflow: hidden;
 }
 
 .stage-eyebrow {

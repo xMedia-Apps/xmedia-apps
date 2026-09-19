@@ -9,7 +9,7 @@
   if (typeof anime === "undefined" || reduce) {
     document
       .querySelectorAll(
-        ".letter, .stage-eyebrow, .stage-line, .stage-tag, .stage-actions, .scroll-hint, .reveal"
+        ".letter, .stage-eyebrow, .stage-line, .stage-tag, .stage-actions"
       )
       .forEach(function (el) {
         el.style.opacity = "1";
@@ -19,6 +19,8 @@
   }
 
   var letters = document.querySelectorAll(".stage-title .letter");
+  if (!letters.length) return;
+
   var tl = anime.timeline({
     easing: "easeOutCubic",
     autoplay: true,
@@ -73,60 +75,5 @@
         duration: 620,
       },
       "-=420"
-    )
-    .add(
-      {
-        targets: ".scroll-hint",
-        opacity: [0, 0.7],
-        duration: 500,
-      },
-      "-=280"
     );
-
-  anime({
-    targets: ".scroll-hint",
-    translateY: [0, 6, 0],
-    duration: 1800,
-    easing: "easeInOutSine",
-    loop: true,
-    delay: 2600,
-  });
-
-  var reveals = document.querySelectorAll(".reveal");
-  if (!reveals.length) return;
-
-  if (!("IntersectionObserver" in window)) {
-    anime({
-      targets: ".reveal",
-      opacity: [0, 1],
-      translateY: [24, 0],
-      delay: anime.stagger(80),
-      duration: 800,
-      easing: "easeOutCubic",
-    });
-    return;
-  }
-
-  var seen = new WeakSet();
-  var observer = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting || seen.has(entry.target)) return;
-        seen.add(entry.target);
-        anime({
-          targets: entry.target,
-          opacity: [0, 1],
-          translateY: [24, 0],
-          duration: 850,
-          easing: "easeOutCubic",
-        });
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.16, rootMargin: "0px 0px -6% 0px" }
-  );
-
-  reveals.forEach(function (el) {
-    observer.observe(el);
-  });
 })();
