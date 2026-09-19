@@ -41,6 +41,13 @@ body.page-home html {
 body.page-home {
   height: 100svh;
   overflow: hidden;
+  touch-action: none;
+}
+
+body.page-home .site-header a,
+body.page-home main a,
+body.page-home .btn {
+  touch-action: manipulation;
 }
 
 a {
