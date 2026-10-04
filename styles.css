@@ -1142,6 +1142,15 @@ main select {
   pointer-events: auto;
 }
 
+.ad-content--vertical {
+  width: min(20rem, 100%);
+  min-height: 280px;
+}
+
+.ad-content--vertical .ad-frame {
+  min-height: 280px;
+}
+
 .ad-content--hub {
   max-width: var(--max);
   margin: 2rem auto 3rem;

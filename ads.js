@@ -1,8 +1,9 @@
 (function () {
   var CLIENT = "ca-pub-9890054230851218";
   var SLOTS = {
-    home: "1087337998",
-    content: "1087337998",
+    home: "1087337998", // Startseite Banner
+    content: "1087337998", // Kontakt / Rechtliches
+    vertical: "4432435060", // Projekte / Studio
   };
   var STORAGE_KEY = "xmedia-consent-ads";
   var DISMISS_KEY = "xmedia-ad-home-dismissed";
@@ -143,10 +144,12 @@
     document.querySelectorAll(".ad-content .ad-frame").forEach(function (frame) {
       var wrap = frame.closest(".ad-content");
       if (!wrap) return;
+      var key = wrap.getAttribute("data-ad") || "content";
+      var slot = SLOTS[key] || SLOTS.content;
       wrap.hidden = true;
       fillUnit(
         frame,
-        SLOTS.content,
+        slot,
         function () {
           wrap.hidden = false;
           wrap.removeAttribute("hidden");
