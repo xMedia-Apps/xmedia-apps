@@ -1045,6 +1045,114 @@ main select {
   }
 }
 
+/* Consent + AdSense */
+.consent-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 80;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.92);
+  border-top: 1px solid var(--line);
+  pointer-events: auto;
+}
+
+.consent-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem 1.25rem;
+}
+
+.consent-inner p {
+  margin: 0;
+  flex: 1 1 16rem;
+  color: var(--fg-dim);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.consent-inner a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.consent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.ad-home-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: stretch;
+  gap: 0.35rem;
+  padding: 0.4rem 0.5rem calc(0.4rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(0, 0, 0, 0.88);
+  border-top: 1px solid var(--line);
+  pointer-events: auto;
+}
+
+.ad-home-banner .ad-frame {
+  flex: 1 1 auto;
+  min-height: 50px;
+  max-height: 100px;
+  overflow: hidden;
+}
+
+.ad-home-banner .ad-close {
+  flex: 0 0 auto;
+  align-self: flex-start;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ad-home-banner .ad-close:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ad-content {
+  width: min(34rem, 100%);
+  margin: 1.25rem auto 0;
+  min-height: 90px;
+  pointer-events: auto;
+}
+
+.ad-content--hub {
+  max-width: var(--max);
+  margin: 2rem auto 3rem;
+  padding: 0 1.25rem;
+}
+
+.ad-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+}
+
+body.page-home.has-home-ad .stage {
+  padding-bottom: 7rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .stage-title .letter,
   .stage-eyebrow,
