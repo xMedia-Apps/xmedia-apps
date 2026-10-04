@@ -1092,7 +1092,7 @@ main select {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 50;
+  z-index: 60;
   display: flex;
   align-items: stretch;
   gap: 0.35rem;
@@ -1100,6 +1100,11 @@ main select {
   background: rgba(0, 0, 0, 0.88);
   border-top: 1px solid var(--line);
   pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.ad-home-banner[hidden] {
+  display: none !important;
 }
 
 .ad-home-banner .ad-frame {
@@ -1110,16 +1115,20 @@ main select {
 }
 
 .ad-home-banner .ad-close {
+  position: relative;
+  z-index: 61;
   flex: 0 0 auto;
-  align-self: flex-start;
-  width: 2rem;
-  height: 2rem;
+  align-self: center;
+  width: 2.25rem;
+  height: 2.25rem;
   border: 1px solid var(--line);
-  background: transparent;
+  background: #111;
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1;
   cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
 }
 
 .ad-home-banner .ad-close:hover {
