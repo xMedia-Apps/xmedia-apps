@@ -2,8 +2,8 @@
   var CLIENT = "ca-pub-9890054230851218";
   // Nach Freigabe in AdSense Anzeigeneinheiten anlegen und Slot-IDs hier eintragen:
   var SLOTS = {
-    home: "", // Startseiten-Banner
-    content: "", // kleine Anzeige auf Unterseiten
+    home: "1087337998", // Startseite Banner
+    content: "1087337998", // bis zweiter Block da ist, gleiches Unit
   };
   var STORAGE_KEY = "xmedia-consent-ads";
   var DISMISS_KEY = "xmedia-ad-home-dismissed";
@@ -110,7 +110,7 @@
     bar.setAttribute("aria-label", "Cookie-Hinweis");
     bar.innerHTML =
       '<div class="consent-inner">' +
-      "<p>Wir nutzen Google AdSense für Werbung. Dafür brauchen wir deine Einwilligung. " +
+      "<p>Wir nutzen Google AdSense fuer Werbung. Dafuer brauchen wir deine Einwilligung. " +
       'Details: <a href="/privacy.html#adsense">Datenschutz</a>.</p>' +
       '<div class="consent-actions">' +
       '<button type="button" class="btn" data-consent="0">Ablehnen</button>' +
