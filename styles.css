@@ -56,6 +56,23 @@ body.page-stage main button {
   touch-action: manipulation;
 }
 
+/* Touch devices: never lock gestures for the tubes background */
+@media (pointer: coarse), (hover: none) {
+  body.page-stage,
+  body.page-stage.tubes-idle-only {
+    touch-action: pan-y;
+  }
+
+  body.page-stage.page-home,
+  body.page-stage.page-studio {
+    touch-action: manipulation;
+  }
+
+  #tubes-bg {
+    pointer-events: none;
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;

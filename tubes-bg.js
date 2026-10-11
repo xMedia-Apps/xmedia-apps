@@ -15,7 +15,6 @@ if (!canvas) {
 ) {
   canvas.remove();
 } else {
-  // Touch devices have no cursor — TubesCursor runs its idle auto-path.
   TubesCursor(canvas, {
     tubes: {
       count: 8,
@@ -35,4 +34,20 @@ if (!canvas) {
       radius: 0.22,
     },
   });
+
+  // Mobile/touch: keep idle animation only — don't steal scroll gestures.
+  var coarse =
+    window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+  var noHover =
+    window.matchMedia && window.matchMedia("(hover: none)").matches;
+  if (coarse || noHover) {
+    var blockTubePointer = function (e) {
+      if (e.pointerType === "touch" || e.pointerType === "pen") {
+        e.stopImmediatePropagation();
+      }
+    };
+    window.addEventListener("pointermove", blockTubePointer, true);
+    window.addEventListener("pointerdown", blockTubePointer, true);
+    document.body.classList.add("tubes-idle-only");
+  }
 }
