@@ -64,8 +64,7 @@ body.page-stage main button {
     touch-action: pan-y;
   }
 
-  body.page-stage.page-home,
-  body.page-stage.page-studio {
+  body.page-stage.page-home {
     touch-action: manipulation;
   }
 
