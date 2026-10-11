@@ -39,7 +39,8 @@ body.page-stage {
 }
 
 body.page-stage.page-kontakt,
-body.page-stage.page-apps {
+body.page-stage.page-apps,
+body.page-stage.page-studio {
   height: auto;
   min-height: 100svh;
   overflow-x: hidden;
@@ -73,8 +74,15 @@ body.page-stage main button {
   }
 
   body.page-apps .stage--projects,
-  body.page-kontakt .stage--form {
-    padding-top: 7rem;
+  body.page-kontakt .stage--form,
+  body.page-studio .stage {
+    padding-top: 7.5rem;
+  }
+
+  .legal,
+  .legal-hub,
+  .page-hero {
+    padding-top: 7.5rem;
   }
 }
 
@@ -140,7 +148,7 @@ main select {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 40;
+  z-index: 100;
   background: #000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -215,6 +223,17 @@ main select {
   padding: 5rem 1.25rem 3rem;
   text-align: center;
   overflow: hidden;
+}
+
+/* Scrollable stage pages: content starts below fixed header */
+body.page-studio .stage {
+  height: auto;
+  min-height: 100svh;
+  max-height: none;
+  justify-content: flex-start;
+  padding-top: 6.5rem;
+  padding-bottom: 3.5rem;
+  overflow: visible;
 }
 
 .stage-eyebrow {
@@ -687,7 +706,7 @@ main select {
   z-index: 1;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 6rem 1.25rem 0.5rem;
+  padding: 6.5rem 1.25rem 0.5rem;
 }
 
 .app-list {
@@ -737,7 +756,7 @@ main select {
   z-index: 1;
   max-width: 46rem;
   margin: 0 auto;
-  padding: 6rem 1.25rem 4rem;
+  padding: 6.5rem 1.25rem 4rem;
 }
 
 .legal-toc {
@@ -931,9 +950,11 @@ main select {
 
 /* Legal hub */
 .legal-hub {
+  position: relative;
+  z-index: 1;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 6rem 1.25rem 4rem;
+  padding: 6.5rem 1.25rem 4rem;
 }
 
 .legal-hub h1 {
