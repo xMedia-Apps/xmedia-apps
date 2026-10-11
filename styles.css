@@ -71,6 +71,11 @@ body.page-stage main button {
   #tubes-bg {
     pointer-events: none;
   }
+
+  body.page-apps .stage--projects,
+  body.page-kontakt .stage--form {
+    padding-top: 7rem;
+  }
 }
 
 a {
@@ -136,7 +141,8 @@ main select {
   left: 0;
   right: 0;
   z-index: 40;
-  background: transparent;
+  background: #000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .site-header-inner {
@@ -404,8 +410,10 @@ main select {
   height: auto;
   min-height: 100svh;
   max-height: none;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 6.5rem;
   padding-bottom: 3.5rem;
+  overflow: visible;
 }
 
 .stage-projects {
@@ -444,8 +452,10 @@ main select {
   height: auto;
   min-height: 100svh;
   max-height: none;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 6.5rem;
   padding-bottom: 3.5rem;
+  overflow: visible;
 }
 
 .stage-form-wrap {
