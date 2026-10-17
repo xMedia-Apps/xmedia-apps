@@ -12,3 +12,11 @@
 
 /favicon.svg
   Cache-Control: public, max-age=604800
+
+/ads.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/app-ads.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=300
