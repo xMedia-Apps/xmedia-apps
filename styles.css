@@ -40,7 +40,8 @@ body.page-stage {
 
 body.page-stage.page-kontakt,
 body.page-stage.page-apps,
-body.page-stage.page-studio {
+body.page-stage.page-studio,
+body.page-stage.page-home-scroll {
   height: auto;
   min-height: 100svh;
   overflow-x: hidden;
@@ -64,8 +65,12 @@ body.page-stage main button {
     touch-action: pan-y;
   }
 
-  body.page-stage.page-home {
+  body.page-stage.page-home:not(.page-home-scroll) {
     touch-action: manipulation;
+  }
+
+  body.page-stage.page-home-scroll {
+    touch-action: pan-y;
   }
 
   #tubes-bg {
@@ -227,12 +232,18 @@ main select {
 /* Scrollable stage pages: content starts below fixed header */
 body.page-studio .stage {
   height: auto;
-  min-height: 100svh;
+  min-height: 0;
   max-height: none;
   justify-content: flex-start;
   padding-top: 6.5rem;
-  padding-bottom: 3.5rem;
+  padding-bottom: 2rem;
   overflow: visible;
+}
+
+body.page-home-scroll .stage--home {
+  height: 100svh;
+  min-height: 100svh;
+  max-height: 100svh;
 }
 
 .stage-eyebrow {
@@ -1216,6 +1227,244 @@ body.page-studio .stage {
 
 body.page-home.has-home-ad .stage {
   padding-bottom: 7rem;
+}
+
+/* Content sections (Start / Studio) */
+.site-content {
+  position: relative;
+  z-index: 1;
+  padding: 0 1.25rem 4.5rem;
+}
+
+.site-content-inner {
+  width: min(40rem, 100%);
+  margin: 0 auto;
+  text-align: left;
+}
+
+.site-content h2 {
+  margin: 2.75rem 0 0.85rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.site-content h2:first-child {
+  margin-top: 0.5rem;
+}
+
+.site-content h3 {
+  margin: 1.35rem 0 0.4rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.site-content p,
+.site-content li {
+  color: var(--fg-dim);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.site-content p {
+  margin: 0 0 0.85rem;
+}
+
+.site-content a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.site-content a:hover {
+  opacity: 0.75;
+}
+
+.content-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.content-card {
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.content-card h3 {
+  margin: 0 0 0.45rem;
+}
+
+.content-card p {
+  margin: 0 0 0.65rem;
+  font-size: 0.9rem;
+}
+
+.text-link {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-decoration: none !important;
+  color: #fff !important;
+}
+
+.content-list {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.content-list li {
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.content-list li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.content-list strong {
+  color: #fff;
+}
+
+.faq h3 {
+  margin-top: 1.5rem;
+}
+
+.content-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 2.25rem !important;
+}
+
+.content-cta .btn {
+  text-decoration: none !important;
+}
+
+/* Project detail cards (Projekte) */
+.project-detail {
+  gap: 1.5rem;
+}
+
+.project-card {
+  text-align: left;
+  padding: 1.15rem 0 1.35rem;
+  border-top: 1px solid var(--line);
+}
+
+.project-card h3 {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.project-card p,
+.project-card li {
+  color: var(--fg-dim);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.project-card p {
+  margin: 0 0 0.75rem;
+}
+
+.project-card ul {
+  margin: 0 0 0.85rem;
+  padding-left: 1.1rem;
+}
+
+.project-card li {
+  margin-bottom: 0.3rem;
+}
+
+.project-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.project-card-head h3 {
+  margin-bottom: 0.35rem;
+}
+
+.project-icon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.project-note {
+  font-size: 0.8rem !important;
+  color: var(--muted) !important;
+}
+
+.project-shots {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  margin: 0.85rem 0 1rem;
+  padding-bottom: 0.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.project-shots img {
+  flex-shrink: 0;
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.project-card .stage-badge,
+.project-card .stage-badges {
+  display: inline-flex;
+  margin-bottom: 0.65rem;
+}
+
+.project-card .stage-app-actions {
+  justify-content: flex-start;
+  margin-top: 0.25rem;
+}
+
+.project-card .stage-title-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.project-card .stage-title-link:hover {
+  opacity: 0.75;
+}
+
+.project-card .stage-badge {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ff8a3d;
+  line-height: 1.2;
+}
+
+.project-card .stage-badge-sep {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.project-card .stage-badge-live {
+  color: #3ddc84;
 }
 
 @media (prefers-reduced-motion: reduce) {
