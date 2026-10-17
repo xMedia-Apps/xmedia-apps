@@ -1428,6 +1428,19 @@ body.page-home.has-home-ad .stage {
   background: rgba(255, 255, 255, 0.04);
 }
 
+.project-shots--wide {
+  overflow: hidden;
+}
+
+.project-shots--wide img {
+  width: 100%;
+  max-width: 34rem;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center top;
+}
+
 .project-card .stage-badge,
 .project-card .stage-badges {
   display: inline-flex;
