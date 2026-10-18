@@ -188,12 +188,12 @@ h1 {
   aspect-ratio: 1;
 }
 
-/* Öltropfen: Spitze oben, runder Boden */
+/* Öltropfen: Spitze oben (scharfe Ecke oben-links + 45° drehen) */
 .orb {
   --level: 0%;
   width: 72%;
   aspect-ratio: 1;
-  border-radius: 70% 70% 70% 0;
+  border-radius: 0 70% 70% 70%;
   transform: rotate(45deg);
   background:
     radial-gradient(circle at 35% 30%, rgba(223, 243, 192, 0.55) 0%, transparent 42%),
