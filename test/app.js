@@ -80,7 +80,7 @@
     2: {
       emoji: "😐",
       title: "Alte Fässer",
-      copy: "Klebriger Rand, Deckel wackelt: Es bleibt etwas drin, aber Wärme und Restgeruch entweichen trotzdem — undichte Stellen machen den Unterschied.",
+      copy: "Klebriger Rand, Deckel wackelt: Es bleibt etwas drin, aber Wärme und Restgeruch entweichen trotzdem — das zieht Ungeziefer an und sieht alles andere als gepflegt aus.",
       label: "Stufe 2: Alte Fässer",
     },
     3: {
