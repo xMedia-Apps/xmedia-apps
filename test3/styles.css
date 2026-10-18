@@ -66,8 +66,48 @@ body {
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(var(--brand-rgb), 0.16), transparent 42%),
+    radial-gradient(ellipse at 50% 0%, rgba(var(--oil-rgb), 0.14), transparent 42%),
+    radial-gradient(ellipse at 80% 60%, rgba(var(--brand-rgb), 0.1), transparent 40%),
     radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+/* Fallende Öltropfen (DOM) */
+.oil-rain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.oil-rain .drop {
+  position: absolute;
+  top: -40px;
+  width: 14px;
+  height: 20px;
+  background: radial-gradient(circle at 35% 30%, #ffe7a8, var(--oil) 45%, #9a5a10 100%);
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  clip-path: path("M7 0 C7 0 0 9 0 13 A7 7 0 0 0 14 13 C14 9 7 0 7 0Z");
+  opacity: 0.7;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+  animation: oil-fall linear forwards;
+}
+
+.oil-rain .drop::after {
+  content: "";
+  position: absolute;
+  top: 22%;
+  left: 26%;
+  width: 30%;
+  height: 22%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+@keyframes oil-fall {
+  0% { transform: translateY(0) scale(0.85); opacity: 0; }
+  8% { opacity: 0.75; }
+  100% { transform: translateY(110vh) scale(1); opacity: 0.2; }
 }
 
 .cursor-glow {
@@ -76,7 +116,7 @@ body {
   height: 240px;
   margin: -120px 0 0 -120px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(var(--brand-rgb), 0.18), transparent 68%);
+  background: radial-gradient(circle, rgba(var(--oil-rgb), 0.2), transparent 68%);
   pointer-events: none;
   z-index: 2;
   mix-blend-mode: screen;
@@ -89,12 +129,13 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 7px;
-  height: 7px;
-  margin: -3.5px 0 0 -3.5px;
-  border-radius: 50%;
-  background: var(--neon);
-  box-shadow: 0 0 10px var(--neon);
+  width: 12px;
+  height: 16px;
+  margin: -10px 0 0 -6px;
+  background: radial-gradient(circle at 35% 28%, #ffe7a8, var(--oil) 50%, #8a5010);
+  border-radius: 50% 50% 50% 50% / 38% 38% 62% 62%;
+  clip-path: path("M6 0 C6 0 0 8 0 11 A6 6 0 0 0 12 11 C12 8 6 0 6 0Z");
+  box-shadow: 0 0 12px rgba(var(--oil-rgb), 0.65);
 }
 
 .scene {
@@ -241,12 +282,14 @@ h1 .accent {
 
 .reactor {
   position: relative;
-  min-height: 440px;
+  min-height: 460px;
   border-radius: 22px;
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
-  border: 1px solid rgba(var(--brand-rgb), 0.28);
+  background:
+    radial-gradient(ellipse at 50% 85%, rgba(var(--oil-rgb), 0.18), transparent 55%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(var(--oil-rgb), 0.3);
   box-shadow:
-    inset 0 0 50px rgba(var(--brand-rgb), 0.05),
+    inset 0 0 50px rgba(var(--oil-rgb), 0.06),
     0 20px 50px rgba(0, 0, 0, 0.35);
   display: grid;
   place-items: center;
@@ -255,28 +298,113 @@ h1 .accent {
   transition: transform 0.2s ease;
 }
 
+.oil-slick {
+  position: absolute;
+  inset: -20%;
+  background:
+    repeating-linear-gradient(
+      115deg,
+      transparent 0 22px,
+      rgba(255, 200, 80, 0.03) 22px 23px
+    );
+  animation: slick-drift 18s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes slick-drift {
+  from { transform: translateX(-4%) rotate(0.5deg); }
+  to { transform: translateX(4%) rotate(-0.5deg); }
+}
+
 .reactor-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(var(--brand-rgb), 0.22);
+  border: 1px solid rgba(var(--oil-rgb), 0.28);
   animation: spin-slow linear infinite;
 }
 
 .r1 { width: 78%; aspect-ratio: 1; animation-duration: 22s; }
-.r2 { width: 62%; aspect-ratio: 1; border-color: rgba(var(--oil-rgb), 0.25); animation-duration: 14s; animation-direction: reverse; }
-.r3 { width: 46%; aspect-ratio: 1; border-style: dashed; animation-duration: 10s; }
+.r2 { width: 62%; aspect-ratio: 1; border-color: rgba(var(--brand-rgb), 0.22); animation-duration: 14s; animation-direction: reverse; }
+.r3 { width: 46%; aspect-ratio: 1; border-style: dashed; border-color: rgba(255, 210, 100, 0.25); animation-duration: 10s; }
 
 @keyframes spin-slow {
   to { transform: rotate(360deg); }
+}
+
+/* Ausgießen über dem Tank */
+.pour {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 70px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.pour-spout {
+  width: 28px;
+  height: 14px;
+  margin: 0 auto;
+  border-radius: 6px 6px 3px 3px;
+  background: linear-gradient(180deg, #6a6a68, #3a3a38);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.pour-stream {
+  width: 7px;
+  height: 0;
+  margin: 0 auto;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #ffe7a0, var(--oil));
+  box-shadow: 0 0 12px rgba(var(--oil-rgb), 0.55);
+  transition: height 0.25s ease;
+  opacity: 0.95;
+}
+
+.pour.is-pouring .pour-stream {
+  height: 42px;
+  animation: stream-wobble 0.35s ease-in-out infinite alternate;
+}
+
+@keyframes stream-wobble {
+  from { transform: scaleX(0.85); filter: brightness(1); }
+  to { transform: scaleX(1.15); filter: brightness(1.15); }
+}
+
+.pour-drip {
+  position: absolute;
+  left: 50%;
+  top: 14px;
+  width: 10px;
+  height: 14px;
+  margin-left: -5px;
+  background: radial-gradient(circle at 35% 30%, #ffe7a8, var(--oil) 55%, #8a5010);
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  clip-path: path("M5 0 C5 0 0 7 0 10 A5 5 0 0 0 10 10 C10 7 5 0 5 0Z");
+  opacity: 0;
+  animation: drip-hang 2.4s ease-in-out infinite;
+}
+
+.pour-drip.d2 { animation-delay: 0.8s; }
+.pour-drip.d3 { animation-delay: 1.6s; }
+
+@keyframes drip-hang {
+  0%, 15% { transform: translateY(0) scale(0.4); opacity: 0; }
+  35% { transform: translateY(4px) scale(1); opacity: 0.9; }
+  55% { transform: translateY(8px) scale(1.05); opacity: 1; }
+  100% { transform: translateY(58px) scale(0.7); opacity: 0; }
 }
 
 .vat {
   position: relative;
   width: min(190px, 46vw);
   height: min(270px, 56vw);
+  margin-top: 2.5rem;
   border-radius: 22px 22px 32px 32px;
   background: rgba(0, 0, 0, 0.4);
-  border: 2px solid rgba(255, 255, 255, 0.14);
+  border: 2px solid rgba(255, 210, 120, 0.22);
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   z-index: 2;
@@ -289,25 +417,122 @@ h1 .accent {
   bottom: 0;
   height: 18%;
   background:
-    linear-gradient(180deg, rgba(255, 230, 140, 0.5), transparent 28%),
-    linear-gradient(180deg, #ffe08a 0%, var(--oil) 34%, var(--brand) 78%, #3f6d1f 100%);
+    linear-gradient(180deg, rgba(255, 236, 170, 0.65), transparent 32%),
+    linear-gradient(180deg, #ffe7a0 0%, var(--oil) 28%, #c47a18 55%, #8a5a12 82%, #4a3008 100%);
   transition: height 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: 0 0 36px rgba(var(--oil-rgb), 0.3);
+  box-shadow: 0 0 40px rgba(var(--oil-rgb), 0.4);
 }
 
 .vat-wave {
   position: absolute;
-  top: -12px;
-  left: -20%;
-  width: 140%;
-  height: 26px;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 220, 0.55), transparent 70%);
-  animation: wave 2s ease-in-out infinite;
+  top: -14px;
+  left: -25%;
+  width: 150%;
+  height: 28px;
+  background: radial-gradient(ellipse at center, rgba(255, 245, 200, 0.7), transparent 70%);
+  animation: wave 1.8s ease-in-out infinite;
+}
+
+.vat-wave.w2 {
+  top: -8px;
+  opacity: 0.45;
+  animation-duration: 2.6s;
+  animation-direction: reverse;
+  background: radial-gradient(ellipse at center, rgba(255, 200, 80, 0.5), transparent 70%);
+}
+
+.vat-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.18) 48%,
+    transparent 62%
+  );
+  background-size: 200% 100%;
+  animation: oil-sheen 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes oil-sheen {
+  0% { background-position: 120% 0; }
+  100% { background-position: -40% 0; }
 }
 
 @keyframes wave {
-  0%, 100% { transform: translateX(-5%) scaleY(1); }
-  50% { transform: translateX(5%) scaleY(1.2); }
+  0%, 100% { transform: translateX(-6%) scaleY(1); }
+  50% { transform: translateX(6%) scaleY(1.25); }
+}
+
+.splash {
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  width: 40px;
+  height: 20px;
+  margin-left: -20px;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 4;
+}
+
+.splash.is-on {
+  animation: splash-pop 0.55s ease-out;
+}
+
+.splash.is-on::before,
+.splash.is-on::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  background: var(--oil);
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+}
+
+.splash.is-on::before {
+  left: 4px;
+  animation: splash-bit 0.55s ease-out;
+}
+
+.splash.is-on::after {
+  right: 4px;
+  animation: splash-bit 0.55s ease-out reverse;
+}
+
+@keyframes splash-pop {
+  0% { opacity: 0; transform: scale(0.5); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.2) translateY(-8px); }
+}
+
+@keyframes splash-bit {
+  to { transform: translate(-10px, -18px) rotate(-20deg); opacity: 0; }
+}
+
+.floor-ripples {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  width: 160px;
+  height: 36px;
+  margin-left: -80px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floor-ripples i {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(var(--oil-rgb), 0.45);
+  border-radius: 50%;
+  animation: ripple-out 1.2s ease-out forwards;
+}
+
+@keyframes ripple-out {
+  from { transform: scale(0.4); opacity: 0.7; }
+  to { transform: scale(1.8); opacity: 0; }
 }
 
 .vat-bubbles span {
@@ -737,5 +962,12 @@ body.is-boost .vat-liquid {
 
   body {
     cursor: auto !important;
+  }
+
+  .oil-rain,
+  .pour-drip,
+  .oil-slick,
+  #fx {
+    display: none !important;
   }
 }

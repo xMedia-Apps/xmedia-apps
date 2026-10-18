@@ -11,11 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/test3/styles.css?v=4" />
+  <link rel="stylesheet" href="/test3/styles.css?v=5" />
 </head>
 <body>
   <canvas id="fx" aria-hidden="true"></canvas>
   <div class="vignette" aria-hidden="true"></div>
+  <div class="oil-rain" id="oilRain" aria-hidden="true"></div>
   <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
   <div class="scene">
@@ -37,26 +38,41 @@
         <span class="line line-b accent">oder verdienst du schon daran?</span>
       </h1>
       <p class="lead line line-c">
-        Schieb den Verbrauch — der Tank füllt sich, der Erlös reagiert live.
+        Schieb den Verbrauch — Öl tropft, der Tank füllt sich, der Erlös reagiert live.
         Kalkulation: <strong>0,25&nbsp;€ pro Liter</strong>.
       </p>
     </section>
 
     <section class="deck" id="rechner">
       <div class="reactor" id="reactor">
+        <div class="oil-slick" aria-hidden="true"></div>
         <div class="reactor-ring r1" aria-hidden="true"></div>
         <div class="reactor-ring r2" aria-hidden="true"></div>
         <div class="reactor-ring r3" aria-hidden="true"></div>
+
+        <div class="pour" aria-hidden="true">
+          <div class="pour-spout"></div>
+          <div class="pour-stream" id="pourStream"></div>
+          <div class="pour-drip d1"></div>
+          <div class="pour-drip d2"></div>
+          <div class="pour-drip d3"></div>
+        </div>
+
         <div class="vat">
           <div class="vat-liquid" id="liquid">
-            <div class="vat-wave" aria-hidden="true"></div>
+            <div class="vat-wave w1" aria-hidden="true"></div>
+            <div class="vat-wave w2" aria-hidden="true"></div>
+            <div class="vat-sheen" aria-hidden="true"></div>
             <div class="vat-bubbles" id="bubbles" aria-hidden="true"></div>
           </div>
           <div class="vat-glass" aria-hidden="true"></div>
           <div class="vat-readout">
             <span id="vatLiters">180</span><small>L</small>
           </div>
+          <div class="splash" id="splash" aria-hidden="true"></div>
         </div>
+
+        <div class="floor-ripples" id="ripples" aria-hidden="true"></div>
         <div class="sparks" id="sparks" aria-hidden="true"></div>
         <p class="reactor-caption">Virtueller Öltank</p>
       </div>
@@ -115,7 +131,7 @@
 
         <button type="button" class="boom-btn" id="boomBtn">
           <span class="boom-fx" aria-hidden="true"></span>
-          <span class="boom-label">Animation starten</span>
+          <span class="boom-label">Ölregen starten</span>
         </button>
 
         <p class="fine">Unverbindliche Beispielrechnung · Liter × 0,25 €</p>
@@ -123,8 +139,8 @@
     </section>
   </div>
 
-  <div class="toast" id="toast" hidden>Tank aufgeladen — Berechnung aktualisiert.</div>
+  <div class="toast" id="toast" hidden>Ölregen aktiv — Tank aufgeladen.</div>
 
-  <script src="/test3/app.js?v=4"></script>
+  <script src="/test3/app.js?v=5"></script>
 </body>
 </html>

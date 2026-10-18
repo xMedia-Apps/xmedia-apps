@@ -20,6 +20,10 @@
   const toast = document.getElementById("toast");
   const cursorGlow = document.getElementById("cursorGlow");
   const canvas = document.getElementById("fx");
+  const oilRain = document.getElementById("oilRain");
+  const pourEl = document.querySelector(".pour");
+  const splash = document.getElementById("splash");
+  const ripples = document.getElementById("ripples");
   const periodBtns = document.querySelectorAll(".pbtn");
 
   let period = "week";
@@ -29,6 +33,8 @@
   let targetEarn = 0;
   let displayYear = 0;
   let targetYear = 0;
+  let pourTimer = null;
+  let lastLiters = -1;
 
   const euro = new Intl.NumberFormat("de-DE", {
     style: "currency",
@@ -36,32 +42,30 @@
   });
   const num = new Intl.NumberFormat("de-DE");
 
-  /* —— Particles canvas —— */
   const ctx = canvas.getContext("2d");
-  let w = 0;
-  let h = 0;
   let particles = [];
   let mouse = { x: 0.5, y: 0.4 };
   let burst = 0;
 
   function resize() {
-    w = canvas.width = window.innerWidth * devicePixelRatio;
-    h = canvas.height = window.innerHeight * devicePixelRatio;
+    canvas.width = window.innerWidth * devicePixelRatio;
+    canvas.height = window.innerHeight * devicePixelRatio;
     canvas.style.width = window.innerWidth + "px";
     canvas.style.height = window.innerHeight + "px";
     ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
   }
 
-  function spawnParticles(count) {
+  function spawnOilDrops(count) {
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        r: Math.random() * 2.2 + 0.4,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: Math.random() * 0.45 + 0.1,
-        a: Math.random() * 0.45 + 0.15,
-        hue: Math.random() > 0.55 ? 85 : 38,
+        y: Math.random() * -window.innerHeight,
+        r: Math.random() * 5 + 3,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: Math.random() * 1.4 + 0.7,
+        a: Math.random() * 0.4 + 0.35,
+        rot: Math.random() * Math.PI,
+        type: "drop",
       });
     }
   }
@@ -69,32 +73,55 @@
   function addBurst(cx, cy, n) {
     burst = 1;
     for (let i = 0; i < n; i++) {
-      const ang = Math.random() * Math.PI * 2;
-      const sp = Math.random() * 4 + 1.5;
+      const ang = (Math.random() * Math.PI) / 1.2 - Math.PI / 2.4;
+      const sp = Math.random() * 5 + 2;
       particles.push({
         x: cx,
         y: cy,
-        r: Math.random() * 3 + 1,
+        r: Math.random() * 6 + 3,
         vx: Math.cos(ang) * sp,
-        vy: Math.sin(ang) * sp,
+        vy: Math.sin(ang) * sp + 1,
         a: 1,
-        hue: Math.random() > 0.5 ? 85 : 45,
+        rot: ang,
+        type: "drop",
         life: 1,
       });
     }
+  }
+
+  function drawDrop(p) {
+    const w = p.r * 0.85;
+    const h = p.r * 1.35;
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot * 0.15);
+    const g = ctx.createRadialGradient(-w * 0.25, -h * 0.25, 0, 0, 0, h);
+    g.addColorStop(0, "rgba(255,236,180," + p.a + ")");
+    g.addColorStop(0.45, "rgba(232,166,58," + p.a + ")");
+    g.addColorStop(1, "rgba(110,60,10," + p.a * 0.9 + ")");
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.moveTo(0, -h);
+    ctx.bezierCurveTo(w, -h * 0.3, w, h * 0.35, 0, h);
+    ctx.bezierCurveTo(-w, h * 0.35, -w, -h * 0.3, 0, -h);
+    ctx.fill();
+    ctx.fillStyle = "rgba(255,255,255," + p.a * 0.35 + ")";
+    ctx.beginPath();
+    ctx.ellipse(-w * 0.25, -h * 0.35, w * 0.22, h * 0.18, -0.4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
   }
 
   function tickFx() {
     if (!ctx) return;
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-    // soft grid
     ctx.save();
-    ctx.strokeStyle = "rgba(141,193,83,0.05)";
+    ctx.strokeStyle = "rgba(232,166,58,0.045)";
     ctx.lineWidth = 1;
-    const gap = 48;
-    const ox = (mouse.x * 20) % gap;
-    const oy = (mouse.y * 20) % gap;
+    const gap = 52;
+    const ox = (mouse.x * 24) % gap;
+    const oy = (mouse.y * 24) % gap;
     for (let x = -gap + ox; x < window.innerWidth; x += gap) {
       ctx.beginPath();
       ctx.moveTo(x, 0);
@@ -110,7 +137,7 @@
     ctx.restore();
 
     if (burst > 0) {
-      ctx.fillStyle = "rgba(184,255,74," + burst * 0.08 + ")";
+      ctx.fillStyle = "rgba(232,166,58," + burst * 0.07 + ")";
       ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
       burst *= 0.9;
       if (burst < 0.02) burst = 0;
@@ -120,31 +147,26 @@
       const p = particles[i];
       p.x += p.vx;
       p.y += p.vy;
+      p.rot += 0.02;
       if (p.life != null) {
-        p.life -= 0.02;
+        p.life -= 0.018;
         p.a = Math.max(0, p.life);
-        p.vx *= 0.98;
-        p.vy *= 0.98;
+        p.vx *= 0.985;
+        p.vy += 0.08;
         if (p.life <= 0) {
           particles.splice(i, 1);
           continue;
         }
-      } else {
-        if (p.y > window.innerHeight + 10) {
-          p.y = -10;
-          p.x = Math.random() * window.innerWidth;
-        }
+      } else if (p.y > window.innerHeight + 30) {
+        p.y = -20;
+        p.x = Math.random() * window.innerWidth;
       }
-      ctx.beginPath();
-      ctx.fillStyle = "hsla(" + p.hue + ",90%,60%," + p.a + ")";
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
+      drawDrop(p);
     }
 
     if (!prefersReduced) requestAnimationFrame(tickFx);
   }
 
-  /* —— Number tween —— */
   function lerp(a, b, t) {
     return a + (b - a) * t;
   }
@@ -174,14 +196,15 @@
   }
 
   function spawnBubbles(level) {
+    if (!bubbles) return;
     bubbles.innerHTML = "";
-    const count = Math.min(14, Math.floor(level / 70) + 2);
+    const count = Math.min(16, Math.floor(level / 60) + 3);
     for (let i = 0; i < count; i++) {
       const s = document.createElement("span");
       s.style.left = 12 + Math.random() * 76 + "%";
       s.style.animationDelay = Math.random() * 2 + "s";
       s.style.animationDuration = 1.8 + Math.random() * 1.6 + "s";
-      s.style.width = 5 + Math.random() * 7 + "px";
+      s.style.width = 5 + Math.random() * 8 + "px";
       s.style.height = s.style.width;
       bubbles.appendChild(s);
     }
@@ -189,22 +212,77 @@
 
   function sparkAt() {
     if (!sparks || prefersReduced) return;
-    const rect = reactor.getBoundingClientRect();
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 10; i++) {
       const s = document.createElement("span");
-      const dx = (Math.random() - 0.5) * 120;
-      const dy = -40 - Math.random() * 100;
-      s.style.left = 40 + Math.random() * 20 + "%";
-      s.style.top = 55 + Math.random() * 20 + "%";
+      const dx = (Math.random() - 0.5) * 140;
+      const dy = -30 - Math.random() * 110;
+      s.style.left = 42 + Math.random() * 16 + "%";
+      s.style.top = 48 + Math.random() * 22 + "%";
       s.style.setProperty("--dx", dx + "px");
       s.style.setProperty("--dy", dy + "px");
-      s.style.background = Math.random() > 0.5 ? "#b8ff4a" : "#f0a020";
+      s.style.background = Math.random() > 0.35 ? "#e8a63a" : "#ffe7a0";
       sparks.appendChild(s);
       setTimeout(function () {
         s.remove();
       }, 700);
     }
-    void rect;
+  }
+
+  function triggerSplash() {
+    if (!splash || prefersReduced) return;
+    splash.classList.remove("is-on");
+    void splash.offsetWidth;
+    splash.classList.add("is-on");
+  }
+
+  function triggerRipple() {
+    if (!ripples || prefersReduced) return;
+    const i = document.createElement("i");
+    ripples.appendChild(i);
+    setTimeout(function () {
+      i.remove();
+    }, 1200);
+  }
+
+  function setPouring(on) {
+    if (!pourEl) return;
+    pourEl.classList.toggle("is-pouring", on);
+  }
+
+  function pulsePour() {
+    setPouring(true);
+    triggerSplash();
+    triggerRipple();
+    clearTimeout(pourTimer);
+    pourTimer = setTimeout(function () {
+      setPouring(false);
+    }, 420);
+  }
+
+  function spawnRain(amount) {
+    if (!oilRain || prefersReduced) return;
+    for (let i = 0; i < amount; i++) {
+      const d = document.createElement("span");
+      d.className = "drop";
+      const size = 10 + Math.random() * 12;
+      d.style.left = Math.random() * 100 + "%";
+      d.style.width = size + "px";
+      d.style.height = size * 1.4 + "px";
+      d.style.animationDuration = 2.2 + Math.random() * 2.8 + "s";
+      d.style.animationDelay = Math.random() * 0.4 + "s";
+      oilRain.appendChild(d);
+      setTimeout(function () {
+        d.remove();
+      }, 5200);
+    }
+  }
+
+  function startAmbientRain() {
+    if (prefersReduced) return;
+    spawnRain(4);
+    setInterval(function () {
+      spawnRain(2 + Math.floor(Math.random() * 3));
+    }, 1800);
   }
 
   function update() {
@@ -217,9 +295,9 @@
     if (energy) energy.style.setProperty("--fill", pct + "%");
     slider.setAttribute("aria-valuenow", String(liters));
     periodLabel.textContent =
-      period === "week" ? "Erlös / Woche" : "Erlös / Monat";
+      period === "week" ? "Möglicher Erlös / Woche" : "Möglicher Erlös / Monat";
 
-    liquid.style.height = Math.max(6, pct) * 0.92 + "%";
+    liquid.style.height = Math.max(8, pct) * 0.92 + "%";
     earnBar.style.width = pct + "%";
 
     targetLiters = liters;
@@ -228,12 +306,16 @@
     requestAnimationFrame(tickNumbers);
 
     spawnBubbles(liters);
-    if (liters > 0 && liters % 50 === 0) sparkAt();
+
+    if (lastLiters >= 0 && liters !== lastLiters) {
+      pulsePour();
+      if (Math.abs(liters - lastLiters) > 8) sparkAt();
+    }
+    lastLiters = liters;
   }
 
   slider.addEventListener("input", function () {
     update();
-    sparkAt();
   });
 
   periodBtns.forEach(function (btn) {
@@ -245,11 +327,11 @@
         b.setAttribute("aria-pressed", on ? "true" : "false");
       });
       update();
-      addBurst(window.innerWidth * 0.7, window.innerHeight * 0.45, 28);
+      addBurst(window.innerWidth * 0.35, window.innerHeight * 0.42, 36);
+      spawnRain(10);
     });
   });
 
-  /* —— Tilt —— */
   if (reactor && !prefersReduced) {
     reactor.addEventListener("pointermove", function (e) {
       const r = reactor.getBoundingClientRect();
@@ -263,7 +345,6 @@
     });
   }
 
-  /* —— Cursor glow —— */
   if (
     cursorGlow &&
     !prefersReduced &&
@@ -282,29 +363,32 @@
     });
   }
 
-  /* —— Boost —— */
   boomBtn.addEventListener("click", function () {
     boomBtn.classList.remove("fire");
     void boomBtn.offsetWidth;
     boomBtn.classList.add("fire");
     document.body.classList.add("is-boost");
-    addBurst(window.innerWidth / 2, window.innerHeight * 0.4, 60);
+    setPouring(true);
+    spawnRain(28);
+    addBurst(window.innerWidth * 0.35, window.innerHeight * 0.38, 70);
     sparkAt();
+    triggerSplash();
+    triggerRipple();
     toast.hidden = false;
     toast.classList.add("show");
     setTimeout(function () {
       document.body.classList.remove("is-boost");
+      setPouring(false);
       toast.classList.remove("show");
-    }, 900);
+    }, 1200);
   });
 
   if (!prefersReduced) {
     resize();
-    spawnParticles(70);
-    window.addEventListener("resize", function () {
-      resize();
-    });
+    spawnOilDrops(55);
+    window.addEventListener("resize", resize);
     requestAnimationFrame(tickFx);
+    startAmbientRain();
   }
 
   update();
