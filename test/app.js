@@ -74,13 +74,13 @@
     1: {
       emoji: "🦨",
       title: "Offene Eimer / lockere Deckel",
-      copy: "Sommer-Hinterhof: Nachbarn beschweren sich, Ungeziefer-Alarm.",
+      copy: "Sommer-Hinterhof: Der Geruch zieht über den Hof, Nachbarn beschweren sich — und Fliegen sowie Ungeziefer finden den Weg von allein.",
       label: "Stufe 1: Offene Eimer",
     },
     2: {
       emoji: "😐",
       title: "Alte Fässer",
-      copy: "Klebriger Rand, Deckel schließt nicht mehr richtig dicht.",
+      copy: "Klebriger Rand, Deckel wackelt: Es bleibt etwas drin, aber Wärme und Restgeruch entweichen trotzdem — undichte Stellen machen den Unterschied.",
       label: "Stufe 2: Alte Fässer",
     },
     3: {
