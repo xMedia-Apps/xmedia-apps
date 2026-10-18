@@ -118,7 +118,7 @@ body {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(var(--oil-rgb), 0.2), transparent 68%);
   pointer-events: none;
-  z-index: 2;
+  z-index: 100;
   mix-blend-mode: screen;
   transition: opacity 0.25s ease;
   opacity: 0;
