@@ -53,43 +53,77 @@
 
   update();
 
-  /* —— Before / After compare —— */
-  const compareRange = document.getElementById("compareRange");
-  const compareAfter = document.getElementById("compareAfter");
-  const compareHandle = document.getElementById("compareHandle");
+  /* —— Before / After compare (Vorher links, Nachher rechts) —— */
   const compareFrame = document.getElementById("compareFrame");
-  const compareAfterImg = compareAfter
-    ? compareAfter.querySelector(".compare-img--after")
-    : null;
+  const compareBeforeImg = document.getElementById("compareBeforeImg");
+  let comparePos = 50;
+  let compareDragging = false;
 
   function syncCompareFrameWidth() {
-    if (!compareFrame || !compareAfterImg) return;
-    compareAfterImg.style.setProperty(
+    if (!compareFrame || !compareBeforeImg) return;
+    compareBeforeImg.style.setProperty(
       "--frame-w",
-      compareFrame.offsetWidth + "px"
+      compareFrame.clientWidth + "px"
     );
   }
 
   function setCompare(pos) {
-    const p = Math.max(0, Math.min(100, Number(pos) || 0));
-    if (compareAfter) compareAfter.style.setProperty("--pos", p + "%");
-    if (compareHandle) compareHandle.style.left = p + "%";
-    if (compareRange) {
-      compareRange.value = String(p);
-      compareRange.setAttribute("aria-valuenow", String(Math.round(p)));
-      compareRange.setAttribute(
-        "aria-valuetext",
-        Math.round(p) + " Prozent Nachher sichtbar"
-      );
-    }
+    comparePos = Math.max(0, Math.min(100, Number(pos) || 0));
+    if (!compareFrame) return;
+    compareFrame.style.setProperty("--pos", comparePos + "%");
+    compareFrame.setAttribute("aria-valuenow", String(Math.round(comparePos)));
+    compareFrame.setAttribute(
+      "aria-valuetext",
+      Math.round(comparePos) + " Prozent Vorher links"
+    );
   }
 
-  if (compareRange) {
-    compareRange.addEventListener("input", function () {
-      setCompare(compareRange.value);
-    });
+  function posFromEvent(e) {
+    const rect = compareFrame.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    return ((clientX - rect.left) / rect.width) * 100;
+  }
+
+  if (compareFrame) {
     syncCompareFrameWidth();
-    setCompare(compareRange.value);
+    setCompare(50);
     window.addEventListener("resize", syncCompareFrameWidth);
+
+    compareFrame.addEventListener("pointerdown", function (e) {
+      compareDragging = true;
+      compareFrame.setPointerCapture(e.pointerId);
+      setCompare(posFromEvent(e));
+    });
+
+    compareFrame.addEventListener("pointermove", function (e) {
+      if (!compareDragging) return;
+      setCompare(posFromEvent(e));
+    });
+
+    function endDrag(e) {
+      compareDragging = false;
+      try {
+        compareFrame.releasePointerCapture(e.pointerId);
+      } catch (err) {}
+    }
+
+    compareFrame.addEventListener("pointerup", endDrag);
+    compareFrame.addEventListener("pointercancel", endDrag);
+
+    compareFrame.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        setCompare(comparePos - 3);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        setCompare(comparePos + 3);
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        setCompare(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        setCompare(100);
+      }
+    });
   }
 })();

@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/test2/styles.css?v=5" />
+  <link rel="stylesheet" href="/test2/styles.css?v=6" />
 </head>
 <body>
   <div class="frame">
@@ -143,48 +143,48 @@
           </p>
         </div>
 
-        <div class="compare-frame" id="compareFrame">
+        <div
+          class="compare-frame"
+          id="compareFrame"
+          style="--pos: 50%"
+          role="slider"
+          tabindex="0"
+          aria-label="Vorher-Nachher-Vergleich"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="50"
+          aria-valuetext="50 Prozent Vorher links"
+        >
           <div class="compare-images">
+            <!-- Nachher als Basis (rechts sichtbar) -->
             <img
-              class="compare-img compare-img--before"
-              src="/test2/assets/before-dirty.jpg"
-              alt="Vorher: verschmutzte Altfett-Situation mit öligen Behältern"
+              class="compare-img compare-img--after"
+              src="/test2/assets/after-clean.jpg"
+              alt="Nachher: saubere Behälter und aufgeräumter Hof"
               width="1200"
               height="800"
               loading="lazy"
+              draggable="false"
             />
-            <div class="compare-after" id="compareAfter" style="--pos: 50%">
+            <!-- Vorher von links darüber -->
+            <div class="compare-before" id="compareBefore">
               <img
-                class="compare-img compare-img--after"
-                src="/test2/assets/after-clean.jpg"
-                alt="Nachher: saubere Behälter und aufgeräumter Hof"
+                class="compare-img compare-img--before"
+                id="compareBeforeImg"
+                src="/test2/assets/before-dirty.jpg"
+                alt="Vorher: verschmutzte Altfett-Situation mit öligen Behältern"
                 width="1200"
                 height="800"
                 loading="lazy"
+                draggable="false"
               />
             </div>
           </div>
 
-          <div class="compare-handle" id="compareHandle" style="left: 50%" aria-hidden="true">
+          <div class="compare-handle" id="compareHandle" aria-hidden="true">
             <span class="compare-handle-line"></span>
             <span class="compare-handle-knob"></span>
           </div>
-
-          <label class="compare-slider-label" for="compareRange">
-            <span class="sr-only">Vorher-Nachher-Vergleich</span>
-            <input
-              id="compareRange"
-              class="compare-range"
-              type="range"
-              min="0"
-              max="100"
-              value="50"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              aria-valuenow="50"
-              aria-valuetext="50 Prozent Nachher sichtbar"
-            />
-          </label>
 
           <span class="compare-tag compare-tag--before">Vorher</span>
           <span class="compare-tag compare-tag--after">Nachher</span>
@@ -198,6 +198,6 @@
     </footer>
   </div>
 
-  <script src="/test2/app.js?v=5"></script>
+  <script src="/test2/app.js?v=6"></script>
 </body>
 </html>
