@@ -7,6 +7,7 @@
   const periodLabel = document.getElementById("periodLabel");
   const formulaLiters = document.getElementById("formulaLiters");
   const formulaResult = document.getElementById("formulaResult");
+  const orb = document.getElementById("orb");
   const tabs = document.querySelectorAll(".tab");
 
   let period = "week";
@@ -33,6 +34,7 @@
     yearEarn.textContent = euro.format(yearMoney);
     if (formulaLiters) formulaLiters.textContent = num.format(liters);
     if (formulaResult) formulaResult.textContent = euro.format(periodMoney);
+    if (orb) orb.style.setProperty("--level", pct + "%");
   }
 
   slider.addEventListener("input", update);
