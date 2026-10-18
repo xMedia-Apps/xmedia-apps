@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/test/styles.css?v=3" />
+  <link rel="stylesheet" href="/test/styles.css?v=4" />
 </head>
 <body>
   <div class="oil-bg" aria-hidden="true">
@@ -93,8 +93,51 @@
         Rechnung: Liter × 0,25&nbsp;€. Beispielwerte — kein Angebot.
       </p>
     </section>
+
+    <section class="smell" id="geruch" aria-labelledby="smell-heading">
+      <p class="eyebrow">Hygienischer Unterschied</p>
+      <h2 id="smell-heading">Die Geruchs-Skala</h2>
+      <p class="smell-lead">
+        Wie laut wäre der Geruch? Schieb die Stufe — und sieh sofort,
+        was ein dichter Verschluss ausmacht.
+      </p>
+
+      <div class="smell-panel" data-stage="1">
+        <div class="smell-stage" id="smellStage" aria-live="polite">
+          <div class="smell-fx" id="smellFx" aria-hidden="true"></div>
+          <p class="smell-emoji" id="smellEmoji">🦨</p>
+          <p class="smell-title" id="smellTitle">Offene Eimer / lockere Deckel</p>
+          <p class="smell-copy" id="smellCopy">
+            Sommer-Hinterhof: Nachbarn beschweren sich, Ungeziefer-Alarm.
+          </p>
+          <p class="smell-click" id="smellClick" hidden>Klick!</p>
+        </div>
+
+        <label class="smell-control" for="smellRange">
+          <span class="smell-control-label">Geruchs-Stufe</span>
+          <input
+            id="smellRange"
+            class="smell-range"
+            type="range"
+            min="1"
+            max="3"
+            step="1"
+            value="1"
+            aria-valuemin="1"
+            aria-valuemax="3"
+            aria-valuenow="1"
+            aria-valuetext="Stufe 1: Offene Eimer"
+          />
+          <div class="smell-ticks" aria-hidden="true">
+            <span>🦨 1</span>
+            <span>😐 2</span>
+            <span>🌿 3</span>
+          </div>
+        </label>
+      </div>
+    </section>
   </main>
 
-  <script src="/test/app.js?v=2"></script>
+  <script src="/test/app.js?v=3"></script>
 </body>
 </html>

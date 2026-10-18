@@ -60,4 +60,98 @@
   });
 
   update();
+
+  /* —— Geruchs-Skala —— */
+  const smellRange = document.getElementById("smellRange");
+  const smellPanel = document.querySelector(".smell-panel");
+  const smellFx = document.getElementById("smellFx");
+  const smellEmoji = document.getElementById("smellEmoji");
+  const smellTitle = document.getElementById("smellTitle");
+  const smellCopy = document.getElementById("smellCopy");
+  const smellClick = document.getElementById("smellClick");
+
+  const smellStages = {
+    1: {
+      emoji: "🦨",
+      title: "Offene Eimer / lockere Deckel",
+      copy: "Sommer-Hinterhof: Nachbarn beschweren sich, Ungeziefer-Alarm.",
+      label: "Stufe 1: Offene Eimer",
+    },
+    2: {
+      emoji: "😐",
+      title: "Alte Fässer",
+      copy: "Klebriger Rand, Deckel schließt nicht mehr richtig dicht.",
+      label: "Stufe 2: Alte Fässer",
+    },
+    3: {
+      emoji: "🌿",
+      title: "Eure Gummidichtungs-Rolltonne",
+      copy: "100 % geruchsdicht verriegelt – selbst bei 30 °C im Hochsommer.",
+      label: "Stufe 3: Gummidichtungs-Rolltonne",
+    },
+  };
+
+  function renderSmellFx(stage) {
+    if (!smellFx) return;
+    smellFx.innerHTML = "";
+
+    if (stage === 1 || stage === 2) {
+      ["c1", "c2", "c3"].forEach(function (c) {
+        const cloud = document.createElement("span");
+        cloud.className = "smell-cloud " + c;
+        smellFx.appendChild(cloud);
+      });
+    }
+
+    if (stage === 1) {
+      ["f1", "f2", "f3"].forEach(function (f) {
+        const fly = document.createElement("span");
+        fly.className = "smell-fly " + f;
+        fly.textContent = "🪰";
+        smellFx.appendChild(fly);
+      });
+    }
+
+    if (stage === 3) {
+      const lock = document.createElement("span");
+      lock.className = "smell-lock";
+      lock.textContent = "🔒";
+      smellFx.appendChild(lock);
+
+      const check = document.createElement("span");
+      check.className = "smell-check";
+      check.textContent = "✓";
+      smellFx.appendChild(check);
+    }
+  }
+
+  function setSmellStage(stage) {
+    const s = Math.max(1, Math.min(3, Number(stage) || 1));
+    const data = smellStages[s];
+    if (!data || !smellPanel) return;
+
+    smellPanel.setAttribute("data-stage", String(s));
+    smellEmoji.textContent = data.emoji;
+    smellTitle.textContent = data.title;
+    smellCopy.textContent = data.copy;
+    smellRange.setAttribute("aria-valuenow", String(s));
+    smellRange.setAttribute("aria-valuetext", data.label);
+    renderSmellFx(s);
+
+    if (smellClick) {
+      smellClick.hidden = s !== 3;
+      smellClick.classList.remove("is-on");
+      if (s === 3) {
+        void smellClick.offsetWidth;
+        smellClick.classList.add("is-on");
+      }
+    }
+  }
+
+  if (smellRange) {
+    smellRange.addEventListener("input", function () {
+      setSmellStage(smellRange.value);
+    });
+    setSmellStage(smellRange.value);
+  }
 })();
