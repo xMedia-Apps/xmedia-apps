@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Altöl-Rechner · Interactive | Test 3</title>
+  <meta name="description" content="Hochinteraktiver Erlösrechner für Altöl — 25 Cent pro Liter." />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#05070a" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/test3/styles.css" />
+</head>
+<body>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <div class="scene">
+    <header class="top">
+      <div class="logo pulse-border">
+        <span class="logo-orb"></span>
+        FLOW · TEST&nbsp;3
+      </div>
+      <div class="live-chip">
+        <span class="ping"></span>
+        LIVE CALC
+      </div>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow glitch-ready" data-text="Fettentsorgung 2.0">Fettentsorgung 2.0</p>
+      <h1>
+        <span class="line line-a">Zahlst du noch</span>
+        <span class="line line-b">für deine Fettentsorgung</span>
+        <span class="line line-c accent">oder verdienst du schon daran?</span>
+      </h1>
+    </section>
+
+    <section class="deck" id="rechner">
+      <div class="reactor" id="reactor">
+        <div class="reactor-ring r1"></div>
+        <div class="reactor-ring r2"></div>
+        <div class="reactor-ring r3"></div>
+        <div class="vat">
+          <div class="vat-liquid" id="liquid">
+            <div class="vat-wave"></div>
+            <div class="vat-bubbles" id="bubbles"></div>
+          </div>
+          <div class="vat-glass"></div>
+          <div class="vat-readout">
+            <span id="vatLiters">0</span><small>L</small>
+          </div>
+        </div>
+        <div class="sparks" id="sparks" aria-hidden="true"></div>
+      </div>
+
+      <div class="console">
+        <div class="console-head">
+          <h2>Power Control</h2>
+          <div class="period-switch" role="group" aria-label="Zeitraum">
+            <button type="button" class="pbtn is-on" data-period="week" aria-pressed="true">
+              <span>WOCHE</span>
+            </button>
+            <button type="button" class="pbtn" data-period="month" aria-pressed="false">
+              <span>MONAT</span>
+            </button>
+          </div>
+        </div>
+
+        <label class="slider-block" for="liters">
+          <div class="slider-meta">
+            <span>Ölverbrauch</span>
+            <output id="litersOut" for="liters">0 L</output>
+          </div>
+          <div class="slider-track-wrap">
+            <input
+              id="liters"
+              type="range"
+              min="0"
+              max="1000"
+              step="1"
+              value="0"
+              aria-valuemin="0"
+              aria-valuemax="1000"
+              aria-valuenow="0"
+            />
+            <div class="slider-energy" id="energy"></div>
+          </div>
+          <div class="ticks" aria-hidden="true">
+            <span>0</span><span>250</span><span>500</span><span>750</span><span>1000</span>
+          </div>
+        </label>
+
+        <div class="hud">
+          <article class="hud-card primary">
+            <p class="hud-label" id="periodLabel">Erlös / Woche</p>
+            <p class="hud-value" id="periodEarn">0,00 €</p>
+            <div class="hud-bar"><i id="earnBar"></i></div>
+          </article>
+          <article class="hud-card">
+            <p class="hud-label">Jahresboost</p>
+            <p class="hud-value hud-value--sm" id="yearEarn">0,00 €</p>
+          </article>
+          <article class="hud-card">
+            <p class="hud-label">Satz</p>
+            <p class="hud-value hud-value--sm">0,25 €/L</p>
+          </article>
+        </div>
+
+        <button type="button" class="boom-btn" id="boomBtn">
+          <span class="boom-fx"></span>
+          <span class="boom-label">BOOST ANIMATION</span>
+        </button>
+
+        <p class="fine">Demo · Liter × 0,25 € · unverbindlich</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" hidden>Nice flow — Tank aufgeladen.</div>
+
+  <script src="/test3/app.js"></script>
+</body>
+</html>
