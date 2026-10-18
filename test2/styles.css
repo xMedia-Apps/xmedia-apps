@@ -180,32 +180,37 @@ h1 {
   place-items: center;
 }
 
-.orb-clip-svg {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-}
-
 .orb-wrap {
   filter: drop-shadow(0 28px 40px rgba(var(--brand-rgb), 0.3));
+  display: grid;
+  place-items: center;
+  width: min(260px, 70%);
+  aspect-ratio: 1;
 }
 
+/* Öltropfen: runde Form + eine Ecke, dann 45° drehen */
 .orb {
   --level: 0%;
-  width: min(210px, 58%);
-  aspect-ratio: 0.72 / 1;
-  clip-path: url(#oil-drop-clip);
-  -webkit-clip-path: url(#oil-drop-clip);
+  width: 72%;
+  aspect-ratio: 1;
+  border-radius: 70% 70% 70% 0;
+  transform: rotate(-45deg);
   background:
-    radial-gradient(circle at 35% 22%, rgba(223, 243, 192, 0.55) 0%, transparent 42%),
-    radial-gradient(circle at 50% 65%, rgba(var(--brand-rgb), 0.28), rgba(61, 95, 28, 0.45));
+    radial-gradient(circle at 35% 30%, rgba(223, 243, 192, 0.55) 0%, transparent 42%),
+    radial-gradient(circle at 55% 55%, rgba(var(--brand-rgb), 0.28), rgba(61, 95, 28, 0.45));
   box-shadow:
-    inset 0 -20px 40px rgba(0, 0, 0, 0.12),
-    inset 0 12px 24px rgba(255, 255, 255, 0.25);
+    inset 0 -16px 36px rgba(0, 0, 0, 0.12),
+    inset 0 10px 20px rgba(255, 255, 255, 0.25);
   position: relative;
   overflow: hidden;
   isolation: isolate;
+}
+
+/* Inhalt zurückdrehen, damit die Flüssigkeit gerade steigt */
+.orb-inner {
+  position: absolute;
+  inset: -22%;
+  transform: rotate(45deg);
 }
 
 .orb-liquid {
@@ -237,24 +242,23 @@ h1 {
   50% { transform: translateX(5%) scaleY(1.25); }
 }
 
-.orb::before {
+.orb-inner::before {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 35% 20%, rgba(223, 243, 192, 0.35) 0%, transparent 40%);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    radial-gradient(circle at 38% 28%, rgba(223, 243, 192, 0.4) 0%, transparent 42%);
   z-index: 2;
   pointer-events: none;
 }
 
-.orb::after {
+.orb-inner::after {
   content: "";
   position: absolute;
-  top: 16%;
-  right: 24%;
-  width: 22%;
-  height: 14%;
+  top: 22%;
+  right: 28%;
+  width: 18%;
+  height: 12%;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.45);
   filter: blur(1px);
