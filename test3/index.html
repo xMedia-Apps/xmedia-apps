@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/test3/styles.css?v=10" />
+  <link rel="stylesheet" href="/test3/styles.css?v=11" />
 </head>
 <body>
   <canvas id="fx" aria-hidden="true"></canvas>
@@ -129,8 +129,37 @@
         <p class="fine">Unverbindliche Beispielrechnung · Liter × 0,25 €</p>
       </div>
     </section>
+
+    <section class="wa-section" id="whatsapp" aria-labelledby="wa-heading">
+      <div class="wa-intro">
+        <p class="eyebrow">Service in Sekunden</p>
+        <h2 id="wa-heading">Frischöl bestellen. Altöl abholen lassen.</h2>
+        <p>
+          So einfach kann’s per Chat laufen — Bestellung und Abholtermin
+          in einem Durchgang.
+        </p>
+      </div>
+
+      <div class="wa-phone">
+        <header class="wa-top">
+          <div class="wa-avatar" aria-hidden="true">Ö</div>
+          <div class="wa-top-meta">
+            <strong>ÖlService</strong>
+            <span>online</span>
+          </div>
+          <button type="button" class="wa-replay" id="waReplay" title="Chat erneut abspielen">↻</button>
+        </header>
+
+        <div class="wa-thread" id="waThread" aria-live="polite"></div>
+
+        <div class="wa-composer" aria-hidden="true">
+          <span>Nachricht</span>
+          <span class="wa-send">➤</span>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <script src="/test3/app.js?v=9"></script>
+  <script src="/test3/app.js?v=10"></script>
 </body>
 </html>

@@ -396,4 +396,151 @@
   }
 
   update();
+
+  /* —— WhatsApp chat simulation —— */
+  const waThread = document.getElementById("waThread");
+  const waReplay = document.getElementById("waReplay");
+  let waTimers = [];
+  let waRunning = false;
+
+  const waScript = [
+    { type: "day", text: "Heute" },
+    {
+      type: "out",
+      text: "Hallo 👋 Wir brauchen <strong>3× 20&nbsp;L Frischöl</strong> — geht das noch heute?",
+      delay: 600,
+    },
+    { type: "typing", delay: 900 },
+    {
+      type: "in",
+      text: "Klar! Ist auf Lager. Bestellung ist in <strong>8 Sekunden</strong> raus — Lieferung morgen zwischen 7 und 10 Uhr.",
+      delay: 1400,
+      time: "14:02",
+    },
+    {
+      type: "out",
+      text: "Super. Und unser <strong>Altöl (~80&nbsp;L)</strong> könnt ihr gleich mit abholen?",
+      delay: 1100,
+      time: "14:03",
+    },
+    { type: "typing", delay: 1000 },
+    {
+      type: "in",
+      text: "Erledigt ✅<br><strong>Termin Di., 22.10. · 09:00–11:00</strong> wurde erstellt.<br>Fahrer meldet sich ca. 30&nbsp;Min. vorher.",
+      delay: 1600,
+      time: "14:03",
+    },
+    {
+      type: "out",
+      text: "Perfekt, danke!",
+      delay: 900,
+      time: "14:04",
+    },
+    { type: "typing", delay: 700 },
+    {
+      type: "in",
+      text: "Gern! Frischöl + Abholung in einem Rutsch. Bis dann 🌿",
+      delay: 1200,
+      time: "14:04",
+    },
+  ];
+
+  function clearWaTimers() {
+    waTimers.forEach(clearTimeout);
+    waTimers = [];
+  }
+
+  function waScroll() {
+    if (!waThread) return;
+    waThread.scrollTop = waThread.scrollHeight;
+  }
+
+  function appendWa(node) {
+    waThread.appendChild(node);
+    waScroll();
+  }
+
+  function makeBubble(side, html, time) {
+    const el = document.createElement("div");
+    el.className = "wa-msg wa-msg--" + side;
+    el.innerHTML =
+      "<p>" +
+      html +
+      "</p>" +
+      (time ? "<time>" + time + "</time>" : "");
+    return el;
+  }
+
+  function makeTyping() {
+    const el = document.createElement("div");
+    el.className = "wa-typing";
+    el.setAttribute("aria-label", "schreibt…");
+    el.innerHTML = "<i></i><i></i><i></i>";
+    return el;
+  }
+
+  function playWaChat() {
+    if (!waThread || waRunning) return;
+    waRunning = true;
+    clearWaTimers();
+    waThread.innerHTML = "";
+
+    if (prefersReduced) {
+      waScript.forEach(function (step) {
+        if (step.type === "day") {
+          const d = document.createElement("div");
+          d.className = "wa-day";
+          d.textContent = step.text;
+          appendWa(d);
+        } else if (step.type === "in" || step.type === "out") {
+          appendWa(makeBubble(step.type, step.text, step.time));
+        }
+      });
+      waRunning = false;
+      return;
+    }
+
+    let t = 0;
+    let typingEl = null;
+
+    waScript.forEach(function (step) {
+      t += step.delay || 400;
+      const at = t;
+      waTimers.push(
+        setTimeout(function () {
+          if (typingEl) {
+            typingEl.remove();
+            typingEl = null;
+          }
+          if (step.type === "day") {
+            const d = document.createElement("div");
+            d.className = "wa-day";
+            d.textContent = step.text;
+            appendWa(d);
+          } else if (step.type === "typing") {
+            typingEl = makeTyping();
+            appendWa(typingEl);
+          } else if (step.type === "in" || step.type === "out") {
+            appendWa(makeBubble(step.type, step.text, step.time));
+          }
+        }, at)
+      );
+    });
+
+    waTimers.push(
+      setTimeout(function () {
+        waRunning = false;
+      }, t + 100)
+    );
+  }
+
+  if (waThread) {
+    playWaChat();
+    if (waReplay) {
+      waReplay.addEventListener("click", function () {
+        waRunning = false;
+        playWaChat();
+      });
+    }
+  }
 })();
