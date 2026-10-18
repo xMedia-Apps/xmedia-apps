@@ -412,7 +412,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .kpi-value {
-  margin: 0 0 1.35rem;
+  margin: 0;
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 5vw, 3.1rem);
   font-weight: 700;
@@ -422,34 +422,45 @@ input[type="range"]::-moz-range-thumb {
   font-variant-numeric: tabular-nums;
 }
 
-.kpi-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-}
-
-.kpi-grid div {
-  padding: 0.75rem 0.85rem;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid var(--line);
-}
-
-.kpi-grid span {
-  display: block;
-  margin-bottom: 0.2rem;
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: var(--ink-2);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.kpi-grid strong {
-  font-size: 1rem;
+.kpi-value--period {
+  margin: 0 0 1.15rem;
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  color: var(--ink-2);
+}
+
+.kpi-year {
+  padding: 1rem 1.05rem 0.95rem;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid rgba(var(--brand-rgb), 0.45);
+  box-shadow: 0 8px 24px rgba(var(--brand-rgb), 0.12);
+}
+
+.kpi-year-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brand-ink);
+}
+
+.kpi-year-value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 2.45rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
   font-variant-numeric: tabular-nums;
+}
+
+.kpi-year-hint {
+  margin: 0.45rem 0 0;
+  font-size: 0.78rem;
+  color: var(--ink-2);
 }
 
 .calc-foot {

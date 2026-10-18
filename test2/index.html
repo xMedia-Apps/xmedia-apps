@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/test2/styles.css?v=2" />
+  <link rel="stylesheet" href="/test2/styles.css?v=3" />
 </head>
 <body>
   <div class="frame">
@@ -95,16 +95,11 @@
 
             <div class="kpi">
               <p class="kpi-label" id="periodLabel">Möglicher Erlös / Woche</p>
-              <p class="kpi-value" id="periodEarn">30,00&nbsp;€</p>
-              <div class="kpi-grid">
-                <div>
-                  <span>Satz</span>
-                  <strong>0,25&nbsp;€/L</strong>
-                </div>
-                <div>
-                  <span>Jahr</span>
-                  <strong id="yearEarn">1.560,00&nbsp;€</strong>
-                </div>
+              <p class="kpi-value kpi-value--period" id="periodEarn">30,00&nbsp;€</p>
+              <div class="kpi-year">
+                <p class="kpi-year-label">Im Jahr</p>
+                <p class="kpi-year-value" id="yearEarn">1.560,00&nbsp;€</p>
+                <p class="kpi-year-hint">Hochrechnung bei gleichem Verbrauch</p>
               </div>
             </div>
           </div>
