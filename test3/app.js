@@ -311,14 +311,32 @@
     targetYear = yearMoney;
     requestAnimationFrame(tickNumbers);
 
-    spawnBubbles(liters);
-
-    if (lastLiters >= 0 && liters !== lastLiters) {
-      pulsePour();
-      if (Math.abs(liters - lastLiters) > 8) sparkAt();
+    const delta = Math.abs(liters - lastLiters);
+    if (lastLiters >= 0 && delta > 0) {
+      // Während des Schiebens nur selten Effekte — Füllstand bleibt flüssig
+      if (delta >= 15) {
+        pulsePour();
+        spawnBubbles(liters);
+      }
+      if (delta > 25) sparkAt();
     }
     lastLiters = liters;
   }
+
+  function setDragging(on) {
+    if (liquid) liquid.classList.toggle("is-dragging", on);
+  }
+
+  slider.addEventListener("pointerdown", function () {
+    setDragging(true);
+  });
+  slider.addEventListener("pointerup", function () {
+    setDragging(false);
+    spawnBubbles(Number(slider.value) || 0);
+  });
+  slider.addEventListener("pointercancel", function () {
+    setDragging(false);
+  });
 
   slider.addEventListener("input", function () {
     update();
