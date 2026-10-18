@@ -10,6 +10,8 @@
   --muted: rgba(243, 247, 239, 0.72);
   --font: "Manrope", system-ui, sans-serif;
   --display: "Syne", "Manrope", system-ui, sans-serif;
+  /* Klare Ziffern — Syne-Zahlen sind schwer lesbar */
+  --num: "IBM Plex Sans", "Manrope", system-ui, sans-serif;
   color-scheme: dark;
 }
 
@@ -336,21 +338,25 @@ h1 .accent {
   inset: 0;
   display: grid;
   place-content: center;
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: clamp(2.1rem, 6vw, 2.7rem);
-  letter-spacing: -0.03em;
+  font-family: var(--num);
+  font-weight: 700;
+  font-size: clamp(2.35rem, 6.5vw, 3rem);
+  letter-spacing: -0.02em;
   line-height: 1;
-  color: #fff;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.85),
+    0 0 1px rgba(0, 0, 0, 0.9),
+    0 4px 18px rgba(0, 0, 0, 0.65);
   z-index: 3;
 }
 
 .vat-readout small {
-  font-size: 0.42em;
-  margin-left: 0.12em;
-  font-weight: 700;
-  opacity: 0.9;
+  font-size: 0.4em;
+  margin-left: 0.15em;
+  font-weight: 600;
+  opacity: 0.95;
 }
 
 .reactor-caption {
@@ -467,11 +473,12 @@ h1 .accent {
 }
 
 .slider-meta output {
-  font-family: var(--display);
-  font-size: 1.55rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--neon);
+  font-family: var(--num);
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
 }
 
 .slider-track-wrap {
@@ -582,17 +589,18 @@ input[type="range"]::-moz-range-thumb {
 
 .hud-value {
   margin: 0;
-  font-family: var(--display);
-  font-size: clamp(1.55rem, 3.2vw, 2rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--neon);
-  font-variant-numeric: tabular-nums;
+  font-family: var(--num);
+  font-size: clamp(1.7rem, 3.4vw, 2.15rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
 .hud-value--sm {
-  font-size: 1.15rem;
-  color: var(--text);
+  font-size: 1.2rem;
+  font-weight: 650;
+  color: #ffffff;
 }
 
 .hud-bar {
