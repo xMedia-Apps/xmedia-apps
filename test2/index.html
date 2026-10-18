@@ -48,7 +48,7 @@
 
         <div class="hero-visual" aria-hidden="true">
           <div class="orb-wrap">
-            <div class="orb" id="orb" style="--level: 64%">
+            <div class="orb" id="orb" style="--level: 26.7%">
               <div class="orb-inner">
                 <div class="orb-liquid">
                   <div class="orb-wave"></div>
@@ -76,7 +76,7 @@
             <div class="control">
               <div class="control-top">
                 <label for="liters">Liter Altöl</label>
-                <output id="litersOut" for="liters">0 L</output>
+                <output id="litersOut" for="liters">50 L</output>
               </div>
               <input
                 id="liters"
@@ -84,10 +84,10 @@
                 min="0"
                 max="1000"
                 step="5"
-                value="120"
+                value="50"
                 aria-valuemin="0"
                 aria-valuemax="1000"
-                aria-valuenow="120"
+                aria-valuenow="50"
               />
               <div class="scale" aria-hidden="true">
                 <span>0</span>
@@ -97,17 +97,17 @@
                 <span>1.000</span>
               </div>
               <p class="formula">
-                Formel: <span id="formulaLiters">120</span>&nbsp;L × 0,25&nbsp;€ =
-                <span id="formulaResult">30,00&nbsp;€</span>
+                Formel: <span id="formulaLiters">50</span>&nbsp;L × 0,25&nbsp;€ =
+                <span id="formulaResult">12,50&nbsp;€</span>
               </p>
             </div>
 
             <div class="kpi">
               <p class="kpi-label" id="periodLabel">Möglicher Erlös / Woche</p>
-              <p class="kpi-value kpi-value--period" id="periodEarn">30,00&nbsp;€</p>
+              <p class="kpi-value kpi-value--period" id="periodEarn">12,50&nbsp;€</p>
               <div class="kpi-year">
                 <p class="kpi-year-label">Im Jahr</p>
-                <p class="kpi-year-value" id="yearEarn">1.560,00&nbsp;€</p>
+                <p class="kpi-year-value" id="yearEarn">650,00&nbsp;€</p>
                 <p class="kpi-year-hint">Hochrechnung bei gleichem Verbrauch</p>
               </div>
             </div>
@@ -202,6 +202,6 @@
     </footer>
   </div>
 
-  <script src="/test2/app.js?v=7"></script>
+  <script src="/test2/app.js?v=8"></script>
 </body>
 </html>

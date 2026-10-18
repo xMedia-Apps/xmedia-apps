@@ -303,7 +303,7 @@
     periodLabel.textContent =
       period === "week" ? "Möglicher Erlös / Woche" : "Möglicher Erlös / Monat";
 
-    liquid.style.height = Math.max(6, visual) + "%";
+    if (liquid) liquid.style.setProperty("--level", visual + "%");
     earnBar.style.width = pct + "%";
 
     targetLiters = liters;

@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/test/styles.css" />
+  <link rel="stylesheet" href="/test/styles.css?v=2" />
 </head>
 <body>
   <div class="oil-bg" aria-hidden="true">
@@ -46,7 +46,7 @@
       <div class="meter">
         <div class="meter-top">
           <span class="meter-label">Ölverbrauch</span>
-          <output class="meter-value" id="litersOut" for="liters">0&nbsp;L</output>
+          <output class="meter-value" id="litersOut" for="liters">50&nbsp;L</output>
         </div>
         <input
           id="liters"
@@ -55,10 +55,10 @@
           min="0"
           max="1000"
           step="1"
-          value="0"
+          value="50"
           aria-valuemin="0"
           aria-valuemax="1000"
-          aria-valuenow="0"
+          aria-valuenow="50"
           aria-label="Liter Altöl"
         />
         <div class="meter-scale" aria-hidden="true">
@@ -70,7 +70,7 @@
 
       <div class="tank" aria-hidden="true">
         <div class="tank-glass">
-          <div class="tank-fill" id="tankFill"></div>
+          <div class="tank-fill" id="tankFill" style="--level: 26.7%"></div>
           <div class="tank-shine"></div>
         </div>
         <svg class="drip" viewBox="0 0 40 56" width="28" height="40">
@@ -81,11 +81,11 @@
       <div class="results">
         <article class="result">
           <p class="result-label" id="periodLabel">Ersparnis / Erlös pro Woche</p>
-          <p class="result-value" id="periodEarn">0,00&nbsp;€</p>
+          <p class="result-value" id="periodEarn">12,50&nbsp;€</p>
         </article>
         <article class="result result--year">
           <p class="result-label">Hochgerechnet aufs Jahr</p>
-          <p class="result-value" id="yearEarn">0,00&nbsp;€</p>
+          <p class="result-value" id="yearEarn">650,00&nbsp;€</p>
         </article>
       </div>
 
@@ -95,6 +95,6 @@
     </section>
   </main>
 
-  <script src="/test/app.js"></script>
+  <script src="/test/app.js?v=2"></script>
 </body>
 </html>

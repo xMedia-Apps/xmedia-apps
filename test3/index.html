@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/test3/styles.css?v=8" />
+  <link rel="stylesheet" href="/test3/styles.css?v=9" />
 </head>
 <body>
   <canvas id="fx" aria-hidden="true"></canvas>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="vat">
-          <div class="vat-liquid" id="liquid">
+          <div class="vat-liquid" id="liquid" style="--level: 26.7%">
             <div class="vat-wave w1" aria-hidden="true"></div>
             <div class="vat-wave w2" aria-hidden="true"></div>
             <div class="vat-sheen" aria-hidden="true"></div>
@@ -67,7 +67,7 @@
           </div>
           <div class="vat-glass" aria-hidden="true"></div>
           <div class="vat-readout">
-            <span id="vatLiters">180</span><small>L</small>
+            <span id="vatLiters">50</span><small>L</small>
           </div>
           <div class="splash" id="splash" aria-hidden="true"></div>
         </div>
@@ -92,7 +92,7 @@
         <label class="slider-block" for="liters">
           <div class="slider-meta">
             <span>Liter Altöl</span>
-            <output id="litersOut" for="liters">180 L</output>
+            <output id="litersOut" for="liters">50 L</output>
           </div>
           <div class="slider-track-wrap">
             <input
@@ -101,10 +101,10 @@
               min="0"
               max="1000"
               step="1"
-              value="180"
+              value="50"
               aria-valuemin="0"
               aria-valuemax="1000"
-              aria-valuenow="180"
+              aria-valuenow="50"
             />
             <div class="slider-energy" id="energy" aria-hidden="true"></div>
           </div>
@@ -116,12 +116,12 @@
         <div class="hud">
           <article class="hud-card">
             <p class="hud-label" id="periodLabel">Möglicher Erlös / Woche</p>
-            <p class="hud-value hud-value--sm" id="periodEarn">45,00 €</p>
+            <p class="hud-value hud-value--sm" id="periodEarn">12,50 €</p>
             <div class="hud-bar"><i id="earnBar"></i></div>
           </article>
           <article class="hud-card hud-card--year">
             <p class="hud-label">Im Jahr</p>
-            <p class="hud-value" id="yearEarn">2.340,00 €</p>
+            <p class="hud-value" id="yearEarn">650,00 €</p>
             <p class="hud-hint">Hochrechnung bei gleichem Verbrauch</p>
           </article>
         </div>
@@ -131,6 +131,6 @@
     </section>
   </div>
 
-  <script src="/test3/app.js?v=7"></script>
+  <script src="/test3/app.js?v=8"></script>
 </body>
 </html>

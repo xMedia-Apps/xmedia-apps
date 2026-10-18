@@ -42,7 +42,7 @@
         : "Ersparnis / Erlös pro Monat";
     periodEarn.textContent = euro.format(periodMoney);
     yearEarn.textContent = euro.format(yearMoney);
-    tankFill.style.height = visual + "%";
+    if (tankFill) tankFill.style.setProperty("--level", visual + "%");
   }
 
   slider.addEventListener("input", update);

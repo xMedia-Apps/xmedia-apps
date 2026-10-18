@@ -411,16 +411,19 @@ h1 .accent {
 }
 
 .vat-liquid {
+  --level: 0%;
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 18%;
+  height: var(--level);
+  min-height: 0;
   background:
     linear-gradient(180deg, rgba(255, 236, 170, 0.65), transparent 32%),
     linear-gradient(180deg, #ffe7a0 0%, var(--oil) 28%, #c47a18 55%, #8a5a12 82%, #4a3008 100%);
-  transition: height 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: height 0.85s cubic-bezier(0.22, 1, 0.36, 1);
   box-shadow: 0 0 40px rgba(var(--oil-rgb), 0.4);
+  will-change: height;
 }
 
 .vat-wave {
