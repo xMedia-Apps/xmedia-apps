@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/test3/styles.css?v=5" />
+  <link rel="stylesheet" href="/test3/styles.css?v=6" />
 </head>
 <body>
   <canvas id="fx" aria-hidden="true"></canvas>
@@ -114,33 +114,27 @@
         </label>
 
         <div class="hud">
-          <article class="hud-card primary">
-            <p class="hud-label" id="periodLabel">Möglicher Erlös / Woche</p>
-            <p class="hud-value" id="periodEarn">45,00 €</p>
-            <div class="hud-bar"><i id="earnBar"></i></div>
-          </article>
           <article class="hud-card">
-            <p class="hud-label">Im Jahr</p>
-            <p class="hud-value hud-value--sm" id="yearEarn">2.340,00 €</p>
+            <p class="hud-label" id="periodLabel">Möglicher Erlös / Woche</p>
+            <p class="hud-value hud-value--sm" id="periodEarn">45,00 €</p>
+            <div class="hud-bar"><i id="earnBar"></i></div>
           </article>
           <article class="hud-card">
             <p class="hud-label">Satz</p>
             <p class="hud-value hud-value--sm">0,25 €/L</p>
           </article>
+          <article class="hud-card hud-card--year">
+            <p class="hud-label">Im Jahr</p>
+            <p class="hud-value" id="yearEarn">2.340,00 €</p>
+            <p class="hud-hint">Hochrechnung bei gleichem Verbrauch</p>
+          </article>
         </div>
-
-        <button type="button" class="boom-btn" id="boomBtn">
-          <span class="boom-fx" aria-hidden="true"></span>
-          <span class="boom-label">Ölregen starten</span>
-        </button>
 
         <p class="fine">Unverbindliche Beispielrechnung · Liter × 0,25 €</p>
       </div>
     </section>
   </div>
 
-  <div class="toast" id="toast" hidden>Ölregen aktiv — Tank aufgeladen.</div>
-
-  <script src="/test3/app.js?v=5"></script>
+  <script src="/test3/app.js?v=6"></script>
 </body>
 </html>

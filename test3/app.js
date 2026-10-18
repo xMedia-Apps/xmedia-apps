@@ -16,8 +16,6 @@
   const reactor = document.getElementById("reactor");
   const sparks = document.getElementById("sparks");
   const bubbles = document.getElementById("bubbles");
-  const boomBtn = document.getElementById("boomBtn");
-  const toast = document.getElementById("toast");
   const cursorGlow = document.getElementById("cursorGlow");
   const canvas = document.getElementById("fx");
   const oilRain = document.getElementById("oilRain");
@@ -362,26 +360,6 @@
       cursorGlow.style.opacity = "0";
     });
   }
-
-  boomBtn.addEventListener("click", function () {
-    boomBtn.classList.remove("fire");
-    void boomBtn.offsetWidth;
-    boomBtn.classList.add("fire");
-    document.body.classList.add("is-boost");
-    setPouring(true);
-    spawnRain(28);
-    addBurst(window.innerWidth * 0.35, window.innerHeight * 0.38, 70);
-    sparkAt();
-    triggerSplash();
-    triggerRipple();
-    toast.hidden = false;
-    toast.classList.add("show");
-    setTimeout(function () {
-      document.body.classList.remove("is-boost");
-      setPouring(false);
-      toast.classList.remove("show");
-    }, 1200);
-  });
 
   if (!prefersReduced) {
     resize();
