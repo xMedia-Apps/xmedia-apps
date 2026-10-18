@@ -52,4 +52,44 @@
   });
 
   update();
+
+  /* —— Before / After compare —— */
+  const compareRange = document.getElementById("compareRange");
+  const compareAfter = document.getElementById("compareAfter");
+  const compareHandle = document.getElementById("compareHandle");
+  const compareFrame = document.getElementById("compareFrame");
+  const compareAfterImg = compareAfter
+    ? compareAfter.querySelector(".compare-img--after")
+    : null;
+
+  function syncCompareFrameWidth() {
+    if (!compareFrame || !compareAfterImg) return;
+    compareAfterImg.style.setProperty(
+      "--frame-w",
+      compareFrame.offsetWidth + "px"
+    );
+  }
+
+  function setCompare(pos) {
+    const p = Math.max(0, Math.min(100, Number(pos) || 0));
+    if (compareAfter) compareAfter.style.setProperty("--pos", p + "%");
+    if (compareHandle) compareHandle.style.left = p + "%";
+    if (compareRange) {
+      compareRange.value = String(p);
+      compareRange.setAttribute("aria-valuenow", String(Math.round(p)));
+      compareRange.setAttribute(
+        "aria-valuetext",
+        Math.round(p) + " Prozent Nachher sichtbar"
+      );
+    }
+  }
+
+  if (compareRange) {
+    compareRange.addEventListener("input", function () {
+      setCompare(compareRange.value);
+    });
+    syncCompareFrameWidth();
+    setCompare(compareRange.value);
+    window.addEventListener("resize", syncCompareFrameWidth);
+  }
 })();
