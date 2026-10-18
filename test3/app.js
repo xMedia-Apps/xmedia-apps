@@ -264,7 +264,12 @@
   }
 
   /* —— Cursor glow —— */
-  if (cursorGlow && !prefersReduced) {
+  if (
+    cursorGlow &&
+    !prefersReduced &&
+    window.matchMedia("(pointer: fine)").matches
+  ) {
+    document.body.classList.add("has-glow");
     window.addEventListener("pointermove", function (e) {
       cursorGlow.style.opacity = "1";
       cursorGlow.style.left = e.clientX + "px";
