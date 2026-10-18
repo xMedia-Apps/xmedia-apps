@@ -539,15 +539,31 @@ h1 .accent {
 .smell-fly.f1 { top: 16%; left: 14%; animation-delay: 0s; }
 .smell-fly.f2 { top: 22%; right: 14%; animation-delay: 0.55s; }
 
-/* Stufe 2: klebriges Fass mit undichtem Deckel */
+/* Stufe 2: klebrige Fässer links & rechts, nicht hinter dem Text */
 .smell-barrel {
   position: absolute;
-  left: 50%;
-  bottom: 12%;
-  width: 72px;
-  height: 78px;
-  margin-left: -36px;
+  bottom: 10%;
+  width: 64px;
+  height: 72px;
   pointer-events: none;
+  z-index: 0;
+}
+
+.smell-barrel--left {
+  left: 0.55rem;
+  transform: scale(0.92);
+}
+
+.smell-barrel--right {
+  right: 0.55rem;
+  transform: scale(0.92) scaleX(-1);
+}
+
+.smell-panel[data-stage="2"] .smell-emoji,
+.smell-panel[data-stage="2"] .smell-title,
+.smell-panel[data-stage="2"] .smell-copy {
+  position: relative;
+  z-index: 2;
 }
 
 .smell-barrel-body {

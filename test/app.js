@@ -113,16 +113,18 @@
     }
 
     if (stage === 2) {
-      const barrel = document.createElement("div");
-      barrel.className = "smell-barrel";
-      barrel.innerHTML =
-        '<span class="smell-barrel-body"></span>' +
-        '<span class="smell-barrel-lid"></span>' +
-        '<span class="smell-barrel-drip d1"></span>' +
-        '<span class="smell-barrel-drip d2"></span>' +
-        '<span class="smell-barrel-drip d3"></span>' +
-        '<span class="smell-barrel-gap"></span>';
-      smellFx.appendChild(barrel);
+      ["left", "right"].forEach(function (side) {
+        const barrel = document.createElement("div");
+        barrel.className = "smell-barrel smell-barrel--" + side;
+        barrel.innerHTML =
+          '<span class="smell-barrel-body"></span>' +
+          '<span class="smell-barrel-lid"></span>' +
+          '<span class="smell-barrel-drip d1"></span>' +
+          '<span class="smell-barrel-drip d2"></span>' +
+          '<span class="smell-barrel-drip d3"></span>' +
+          '<span class="smell-barrel-gap"></span>';
+        smellFx.appendChild(barrel);
+      });
     }
 
     if (stage === 3) {
