@@ -5,8 +5,9 @@
   const periodEarn = document.getElementById("periodEarn");
   const yearEarn = document.getElementById("yearEarn");
   const periodLabel = document.getElementById("periodLabel");
-  const bar = document.getElementById("bar");
-  const periodBtns = document.querySelectorAll(".segment-btn");
+  const formulaLiters = document.getElementById("formulaLiters");
+  const formulaResult = document.getElementById("formulaResult");
+  const tabs = document.querySelectorAll(".tab");
 
   let period = "week";
 
@@ -15,9 +16,7 @@
     currency: "EUR",
   });
 
-  function formatLiters(n) {
-    return new Intl.NumberFormat("de-DE").format(n) + " L";
-  }
+  const num = new Intl.NumberFormat("de-DE");
 
   function update() {
     const liters = Number(slider.value) || 0;
@@ -27,24 +26,23 @@
 
     slider.style.setProperty("--fill", pct + "%");
     slider.setAttribute("aria-valuenow", String(liters));
-    litersOut.textContent = formatLiters(liters);
+    litersOut.textContent = num.format(liters) + " L";
     periodLabel.textContent =
-      period === "week"
-        ? "Erlös / Ersparnis je Woche"
-        : "Erlös / Ersparnis je Monat";
+      period === "week" ? "Möglicher Erlös / Woche" : "Möglicher Erlös / Monat";
     periodEarn.textContent = euro.format(periodMoney);
     yearEarn.textContent = euro.format(yearMoney);
-    bar.style.width = pct + "%";
+    if (formulaLiters) formulaLiters.textContent = num.format(liters);
+    if (formulaResult) formulaResult.textContent = euro.format(periodMoney);
   }
 
   slider.addEventListener("input", update);
 
-  periodBtns.forEach(function (btn) {
+  tabs.forEach(function (btn) {
     btn.addEventListener("click", function () {
       period = btn.getAttribute("data-period") || "week";
-      periodBtns.forEach(function (b) {
+      tabs.forEach(function (b) {
         const on = b === btn;
-        b.classList.toggle("is-on", on);
+        b.classList.toggle("is-active", on);
         b.setAttribute("aria-pressed", on ? "true" : "false");
       });
       update();

@@ -3,130 +3,143 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Altöl-Erlösrechner | Test 2</title>
-  <meta name="description" content="Berechnen Sie Ihren möglichen Erlös aus Altöl und Fettentsorgung — 25 Cent pro Liter." />
+  <title>Erlösrechner Altfett | Test 2</title>
+  <meta name="description" content="Berechnen Sie Ihren möglichen Erlös aus Altöl und Speisefett — 25 Cent pro Liter." />
   <meta name="robots" content="noindex,nofollow" />
-  <meta name="theme-color" content="#8dc153" />
+  <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="/favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/test2/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/test2/styles.css?v=2" />
 </head>
 <body>
-  <header class="site-top">
-    <div class="site-top-inner">
-      <div class="brand">
-        <span class="brand-dot" aria-hidden="true"></span>
-        <div>
-          <strong>Altfett-Rechner</strong>
-          <span>Prototyp · speiseoel.net Farbwelt</span>
+  <div class="frame">
+    <header class="nav">
+      <a class="logo" href="#rechner">
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#8dc153" d="M12 2c-1.2 3.8-4.8 6.2-8.5 7.2 3.2 1.2 6.2 3.8 7.6 7.8 1.2-3.5 4.4-6.2 8.4-7.4C15.8 8.2 13.2 5.4 12 2z"/>
+          <path fill="#6fa33a" d="M12 11.2c-.6 2.2-2.4 3.6-4.4 4.2 1.7.6 3.2 1.9 3.9 4 0 0 .1-.1.1-.1.8-2.1 2.6-3.5 4.7-4.1-1.9-.7-3.5-1.9-4.3-4z"/>
+        </svg>
+        <span>HK Service</span>
+      </a>
+      <nav class="nav-links" aria-label="Bereiche">
+        <a href="#rechner">Rechner</a>
+        <a href="#ablauf">Ablauf</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Altfettentsorgung</p>
+          <h1>Zahlst du noch für deine Fettentsorgung — oder verdienst du schon daran?</h1>
+          <p class="hero-text">
+            Mit dem Erlösrechner sehen Gastronomiebetriebe in Sekunden,
+            welchen Wert ihr Altöl bei <strong>0,25&nbsp;€ pro Liter</strong> haben kann.
+          </p>
+          <ul class="trust">
+            <li>Kostenlose Abholung</li>
+            <li>Recycling zu Biodiesel</li>
+            <li>Transparenter Satz</li>
+          </ul>
         </div>
-      </div>
-      <p class="rate-pill">0,25&nbsp;€ / Liter</p>
-    </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-inner">
-        <p class="kicker">Kostenlose Altfettabholung · Erlös statt Entsorgungskosten</p>
-        <h1>Zahlst du noch für deine Fettentsorgung — oder verdienst du schon daran?</h1>
-        <p class="lead">
-          Stellen Sie Ihren Verbrauch ein und sehen Sie sofort den möglichen Erlös.
-          Kalkulation auf Basis von <strong>25&nbsp;Cent pro Liter</strong> Altöl.
-        </p>
-      </div>
-    </section>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orb"></div>
+        </div>
+      </section>
 
-    <section class="workspace" aria-labelledby="calc-title">
-      <div class="workspace-inner">
-        <div class="card card--input">
-          <header class="card-head">
-            <h2 id="calc-title">Verbrauch eingeben</h2>
-            <p>Schieberegler von 0 bis 1.000 Liter</p>
+      <section class="calc" id="rechner" aria-labelledby="calc-heading">
+        <div class="calc-shell">
+          <header class="calc-head">
+            <div>
+              <h2 id="calc-heading">Erlös berechnen</h2>
+              <p>Verbrauch festlegen · Ergebnis live</p>
+            </div>
+            <div class="tabs" role="group" aria-label="Zeitraum">
+              <button type="button" class="tab is-active" data-period="week" aria-pressed="true">Woche</button>
+              <button type="button" class="tab" data-period="month" aria-pressed="false">Monat</button>
+            </div>
           </header>
 
-          <div class="segment" role="group" aria-label="Zeitraum">
-            <button type="button" class="segment-btn is-on" data-period="week" aria-pressed="true">Pro Woche</button>
-            <button type="button" class="segment-btn" data-period="month" aria-pressed="false">Pro Monat</button>
+          <div class="calc-body">
+            <div class="control">
+              <div class="control-top">
+                <label for="liters">Liter Altöl</label>
+                <output id="litersOut" for="liters">0 L</output>
+              </div>
+              <input
+                id="liters"
+                type="range"
+                min="0"
+                max="1000"
+                step="5"
+                value="120"
+                aria-valuemin="0"
+                aria-valuemax="1000"
+                aria-valuenow="120"
+              />
+              <div class="scale" aria-hidden="true">
+                <span>0</span>
+                <span>250</span>
+                <span>500</span>
+                <span>750</span>
+                <span>1.000</span>
+              </div>
+              <p class="formula">
+                Formel: <span id="formulaLiters">120</span>&nbsp;L × 0,25&nbsp;€ =
+                <span id="formulaResult">30,00&nbsp;€</span>
+              </p>
+            </div>
+
+            <div class="kpi">
+              <p class="kpi-label" id="periodLabel">Möglicher Erlös / Woche</p>
+              <p class="kpi-value" id="periodEarn">30,00&nbsp;€</p>
+              <div class="kpi-grid">
+                <div>
+                  <span>Satz</span>
+                  <strong>0,25&nbsp;€/L</strong>
+                </div>
+                <div>
+                  <span>Jahr</span>
+                  <strong id="yearEarn">1.560,00&nbsp;€</strong>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <label class="field" for="liters">
-            <span class="field-row">
-              <span>Liter Altöl / Speisefett</span>
-              <output id="litersOut" for="liters">0 L</output>
-            </span>
-            <input
-              id="liters"
-              type="range"
-              min="0"
-              max="1000"
-              step="1"
-              value="0"
-              aria-valuemin="0"
-              aria-valuemax="1000"
-              aria-valuenow="0"
-            />
-            <span class="ticks" aria-hidden="true">
-              <span>0 L</span>
-              <span>250</span>
-              <span>500</span>
-              <span>750</span>
-              <span>1.000 L</span>
-            </span>
-          </label>
-
-          <div class="progress" aria-hidden="true">
-            <div class="progress-fill" id="bar"></div>
-          </div>
+          <footer class="calc-foot">
+            Unverbindliche Beispielrechnung. Kein Angebot, keine Preisbindung.
+          </footer>
         </div>
+      </section>
 
-        <aside class="card card--result">
-          <p class="result-kicker" id="periodLabel">Erlös / Ersparnis je Woche</p>
-          <p class="result-amount" id="periodEarn">0,00&nbsp;€</p>
-          <ul class="result-list">
-            <li>
-              <span>Vergütungssatz</span>
-              <strong>0,25&nbsp;€ / L</strong>
-            </li>
-            <li>
-              <span>Hochrechnung Jahr</span>
-              <strong id="yearEarn">0,00&nbsp;€</strong>
-            </li>
-          </ul>
-          <p class="result-note">
-            Unverbindliche Beispielrechnung. Kein Angebot und keine Preisbindung.
-          </p>
-        </aside>
-      </div>
-    </section>
+      <section class="steps" id="ablauf">
+        <h2>So einfach funktioniert’s</h2>
+        <ol>
+          <li>
+            <strong>Verbrauch schätzen</strong>
+            <span>Liter pro Woche oder Monat am Regler einstellen.</span>
+          </li>
+          <li>
+            <strong>Erlös ablesen</strong>
+            <span>Sofortige Berechnung inkl. Jahreshochrechnung.</span>
+          </li>
+          <li>
+            <strong>Abholung nutzen</strong>
+            <span>Altöl zurückgeben — statt Entsorgungskosten einen Erlös erzielen.</span>
+          </li>
+        </ol>
+      </section>
+    </main>
 
-    <section class="benefits">
-      <div class="benefits-inner">
-        <article>
-          <span class="num">01</span>
-          <h3>Klar kalkuliert</h3>
-          <p>Liter × 0,25&nbsp;€ — nachvollziehbar und in Echtzeit sichtbar.</p>
-        </article>
-        <article>
-          <span class="num">02</span>
-          <h3>Woche oder Monat</h3>
-          <p>Zeitraum wechseln, Jahreswert passt sich automatisch an.</p>
-        </article>
-        <article>
-          <span class="num">03</span>
-          <h3>Für Gastronomie</h3>
-          <p>Von wenigen Litern bis Großverbrauch — bis 1.000&nbsp;L abbildbar.</p>
-        </article>
-      </div>
-    </section>
-  </main>
+    <footer class="foot">
+      <span>© HK Service GmbH</span>
+      <span>Prototyp-Landingpage</span>
+    </footer>
+  </div>
 
-  <footer class="site-foot">
-    <p>Testseite · nicht verlinkt · Farbreferenz speiseoel.net (#8DC153)</p>
-  </footer>
-
-  <script src="/test2/app.js"></script>
+  <script src="/test2/app.js?v=2"></script>
 </body>
 </html>
