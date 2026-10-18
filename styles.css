@@ -73,6 +73,7 @@ body.page-stage main button {
     touch-action: pan-y;
   }
 
+  #tubes-wrap,
   #tubes-bg {
     pointer-events: none;
   }
@@ -117,14 +118,26 @@ a:hover {
   opacity: 0.35;
 }
 
-/* Neon tubes cursor trail (WebGL) */
-#tubes-bg {
+/* Neon tubes cursor trail (WebGL) — fixed viewport wrapper so the lib
+   measures window size, not full document height on scrollable pages */
+#tubes-wrap {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
+  height: 100dvh;
   z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#tubes-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   display: block;
+  pointer-events: none;
 }
 
 .site-header,

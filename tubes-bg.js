@@ -15,6 +15,15 @@ if (!canvas) {
 ) {
   canvas.remove();
 } else {
+  // TubesCursor sizes from parentNode.offsetHeight — that must be the
+  // viewport, not the full scrollable document (body), or idle tubes
+  // sit below the fold on long pages.
+  var wrap = document.createElement("div");
+  wrap.id = "tubes-wrap";
+  wrap.setAttribute("aria-hidden", "true");
+  canvas.parentNode.insertBefore(wrap, canvas);
+  wrap.appendChild(canvas);
+
   TubesCursor(canvas, {
     tubes: {
       count: 8,
