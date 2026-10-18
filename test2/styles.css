@@ -188,13 +188,13 @@ h1 {
   aspect-ratio: 1;
 }
 
-/* Öltropfen: runde Form + eine Ecke, dann 45° drehen */
+/* Öltropfen: Spitze oben, runder Boden */
 .orb {
   --level: 0%;
   width: 72%;
   aspect-ratio: 1;
   border-radius: 70% 70% 70% 0;
-  transform: rotate(-45deg);
+  transform: rotate(45deg);
   background:
     radial-gradient(circle at 35% 30%, rgba(223, 243, 192, 0.55) 0%, transparent 42%),
     radial-gradient(circle at 55% 55%, rgba(var(--brand-rgb), 0.28), rgba(61, 95, 28, 0.45));
@@ -210,7 +210,7 @@ h1 {
 .orb-inner {
   position: absolute;
   inset: -22%;
-  transform: rotate(45deg);
+  transform: rotate(-45deg);
 }
 
 .orb-liquid {
