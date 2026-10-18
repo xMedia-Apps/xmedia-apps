@@ -613,12 +613,15 @@ h1 .accent {
 .smell-title {
   position: relative;
   z-index: 1;
-  margin: 0.35rem 0 0;
+  margin: 0.45rem 0 0;
+  max-width: 22rem;
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  letter-spacing: 0.04em;
+  font-size: clamp(1.55rem, 4.5vw, 2.05rem);
+  letter-spacing: 0.03em;
   text-transform: uppercase;
+  line-height: 1.1;
   color: var(--foam);
+  text-wrap: balance;
 }
 
 .smell-copy {

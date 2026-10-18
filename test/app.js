@@ -85,9 +85,9 @@
     },
     3: {
       emoji: "🌿",
-      title: "Eure Gummidichtungs-Rolltonne",
+      title: "Unsere Gummidichtungs-Fässer und Rolltonnen",
       copy: "100 % geruchsdicht verriegelt – selbst bei 30 °C im Hochsommer.",
-      label: "Stufe 3: Gummidichtungs-Rolltonne",
+      label: "Stufe 3: Gummidichtungs-Fässer und Rolltonnen",
     },
   };
 
