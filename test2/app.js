@@ -19,11 +19,19 @@
 
   const num = new Intl.NumberFormat("de-DE");
 
+  /* 0→150 L = 0→80 %, 150→1000 L = 80→100 % */
+  function visualFillPercent(liters) {
+    const L = Math.max(0, Math.min(1000, Number(liters) || 0));
+    if (L <= 150) return (L / 150) * 80;
+    return 80 + ((L - 150) / 850) * 20;
+  }
+
   function update() {
     const liters = Number(slider.value) || 0;
     const periodMoney = liters * RATE;
     const yearMoney = period === "week" ? periodMoney * 52 : periodMoney * 12;
     const pct = (liters / 1000) * 100;
+    const visual = visualFillPercent(liters);
 
     slider.style.setProperty("--fill", pct + "%");
     slider.setAttribute("aria-valuenow", String(liters));
@@ -34,7 +42,7 @@
     yearEarn.textContent = euro.format(yearMoney);
     if (formulaLiters) formulaLiters.textContent = num.format(liters);
     if (formulaResult) formulaResult.textContent = euro.format(periodMoney);
-    if (orb) orb.style.setProperty("--level", pct + "%");
+    if (orb) orb.style.setProperty("--level", visual + "%");
   }
 
   slider.addEventListener("input", update);

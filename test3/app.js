@@ -283,11 +283,19 @@
     }, 1800);
   }
 
+  /* 0→150 L = 0→80 %, 150→1000 L = 80→100 % */
+  function visualFillPercent(liters) {
+    const L = Math.max(0, Math.min(1000, Number(liters) || 0));
+    if (L <= 150) return (L / 150) * 80;
+    return 80 + ((L - 150) / 850) * 20;
+  }
+
   function update() {
     const liters = Number(slider.value) || 0;
     const periodMoney = liters * RATE;
     const yearMoney = period === "week" ? periodMoney * 52 : periodMoney * 12;
     const pct = (liters / 1000) * 100;
+    const visual = visualFillPercent(liters);
 
     slider.style.setProperty("--fill", pct + "%");
     if (energy) energy.style.setProperty("--fill", pct + "%");
@@ -295,7 +303,7 @@
     periodLabel.textContent =
       period === "week" ? "Möglicher Erlös / Woche" : "Möglicher Erlös / Monat";
 
-    liquid.style.height = Math.max(8, pct) * 0.92 + "%";
+    liquid.style.height = Math.max(6, visual) + "%";
     earnBar.style.width = pct + "%";
 
     targetLiters = liters;
