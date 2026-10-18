@@ -104,12 +104,25 @@
     }
 
     if (stage === 1) {
-      ["f1", "f2", "f3"].forEach(function (f) {
+      ["f1", "f2"].forEach(function (f) {
         const fly = document.createElement("span");
         fly.className = "smell-fly " + f;
         fly.textContent = "🪰";
         smellFx.appendChild(fly);
       });
+    }
+
+    if (stage === 2) {
+      const barrel = document.createElement("div");
+      barrel.className = "smell-barrel";
+      barrel.innerHTML =
+        '<span class="smell-barrel-body"></span>' +
+        '<span class="smell-barrel-lid"></span>' +
+        '<span class="smell-barrel-drip d1"></span>' +
+        '<span class="smell-barrel-drip d2"></span>' +
+        '<span class="smell-barrel-drip d3"></span>' +
+        '<span class="smell-barrel-gap"></span>';
+      smellFx.appendChild(barrel);
     }
 
     if (stage === 3) {

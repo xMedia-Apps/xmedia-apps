@@ -536,9 +536,81 @@ h1 .accent {
   animation: smell-buzz 2.4s ease-in-out infinite;
 }
 
-.smell-fly.f1 { top: 18%; left: 18%; animation-delay: 0s; }
-.smell-fly.f2 { top: 28%; right: 20%; animation-delay: 0.5s; }
-.smell-fly.f3 { top: 42%; left: 48%; animation-delay: 1s; }
+.smell-fly.f1 { top: 16%; left: 14%; animation-delay: 0s; }
+.smell-fly.f2 { top: 22%; right: 14%; animation-delay: 0.55s; }
+
+/* Stufe 2: klebriges Fass mit undichtem Deckel */
+.smell-barrel {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  width: 72px;
+  height: 78px;
+  margin-left: -36px;
+  pointer-events: none;
+}
+
+.smell-barrel-body {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 0;
+  height: 58px;
+  border-radius: 8px 8px 10px 10px;
+  background:
+    linear-gradient(90deg, #6a4a18, #c49a3a 40%, #8a6520 70%, #5a4010);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.smell-barrel-lid {
+  position: absolute;
+  left: 4px;
+  right: 8px;
+  top: 4px;
+  height: 16px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #d4b46a, #8a6a28);
+  transform: rotate(-11deg);
+  transform-origin: left center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  animation: smell-lid-wobble 2.8s ease-in-out infinite;
+}
+
+.smell-barrel-gap {
+  position: absolute;
+  top: 18px;
+  right: 14px;
+  width: 22px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(40, 28, 8, 0.55);
+  box-shadow: 0 0 10px rgba(230, 180, 40, 0.35);
+}
+
+.smell-barrel-drip {
+  position: absolute;
+  width: 7px;
+  height: 12px;
+  border-radius: 40% 40% 50% 50%;
+  background: linear-gradient(180deg, #e6b428, #6a4010);
+  opacity: 0.85;
+  animation: smell-drip 1.8s ease-in infinite;
+}
+
+.smell-barrel-drip.d1 { left: 22px; top: 20px; animation-delay: 0s; }
+.smell-barrel-drip.d2 { left: 36px; top: 24px; animation-delay: 0.45s; width: 6px; height: 10px; }
+.smell-barrel-drip.d3 { left: 48px; top: 18px; animation-delay: 0.9s; width: 5px; height: 9px; }
+
+@keyframes smell-lid-wobble {
+  0%, 100% { transform: rotate(-11deg); }
+  50% { transform: rotate(-7deg) translateY(-1px); }
+}
+
+@keyframes smell-drip {
+  0% { transform: translateY(0) scaleY(0.7); opacity: 0; }
+  25% { opacity: 0.9; }
+  100% { transform: translateY(36px) scaleY(1.1); opacity: 0; }
+}
 
 @keyframes smell-rise {
   0%, 100% { transform: translateY(0) scale(1); opacity: 0.35; }
@@ -554,28 +626,18 @@ h1 .accent {
 
 .smell-lock {
   position: absolute;
-  top: 18%;
-  left: 50%;
-  transform: translateX(-50%) scale(0.6);
-  font-size: 1.6rem;
+  top: 0.55rem;
+  left: 0.85rem;
+  font-size: 1.45rem;
   opacity: 0;
   filter: drop-shadow(0 0 12px rgba(141, 193, 83, 0.6));
-}
-
-.smell-panel[data-stage="3"] .smell-lock {
-  animation: smell-lock-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes smell-lock-in {
-  0% { opacity: 0; transform: translateX(-50%) scale(0.4) rotate(-20deg); }
-  60% { opacity: 1; transform: translateX(-50%) scale(1.15) rotate(4deg); }
-  100% { opacity: 1; transform: translateX(-50%) scale(1) rotate(0); }
+  z-index: 2;
 }
 
 .smell-check {
   position: absolute;
-  bottom: 14%;
-  right: 16%;
+  top: 0.65rem;
+  right: 0.75rem;
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
@@ -587,10 +649,22 @@ h1 .accent {
   place-items: center;
   opacity: 0;
   transform: scale(0.5);
+  z-index: 2;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
 .smell-panel[data-stage="3"] .smell-check {
   animation: smell-pop 0.45s 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.smell-panel[data-stage="3"] .smell-lock {
+  animation: smell-lock-in-tl 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes smell-lock-in-tl {
+  0% { opacity: 0; transform: scale(0.4) rotate(-20deg); }
+  60% { opacity: 1; transform: scale(1.15) rotate(4deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
 }
 
 @keyframes smell-pop {
@@ -640,8 +714,8 @@ h1 .accent {
 
 .smell-click {
   position: absolute;
-  top: 12%;
-  right: 18%;
+  top: 0.7rem;
+  left: 50%;
   z-index: 2;
   margin: 0;
   font-family: var(--font-display);
@@ -650,6 +724,8 @@ h1 .accent {
   color: #8dc153;
   text-shadow: 0 0 16px rgba(141, 193, 83, 0.55);
   opacity: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
 }
 
 .smell-click.is-on {
@@ -657,9 +733,9 @@ h1 .accent {
 }
 
 @keyframes smell-click {
-  0% { opacity: 0; transform: scale(0.6) translateY(6px); }
-  35% { opacity: 1; transform: scale(1.2) translateY(0); }
-  100% { opacity: 0; transform: scale(1) translateY(-10px); }
+  0% { opacity: 0; transform: translateX(-50%) scale(0.6) translateY(6px); }
+  35% { opacity: 1; transform: translateX(-50%) scale(1.2) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) scale(1) translateY(-10px); }
 }
 
 .smell-control {
@@ -739,10 +815,11 @@ h1 .accent {
   .smell-panel[data-stage="3"] .smell-lock,
   .smell-panel[data-stage="3"] .smell-check {
     opacity: 1;
-    transform: translateX(-50%) scale(1);
+    transform: scale(1);
   }
 
-  .smell-panel[data-stage="3"] .smell-check {
-    transform: scale(1);
+  .smell-barrel-lid,
+  .smell-barrel-drip {
+    animation: none !important;
   }
 }
