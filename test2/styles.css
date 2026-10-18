@@ -180,16 +180,27 @@ h1 {
   place-items: center;
 }
 
+.orb-clip-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.orb-wrap {
+  filter: drop-shadow(0 28px 40px rgba(var(--brand-rgb), 0.3));
+}
+
 .orb {
   --level: 0%;
-  width: min(280px, 70%);
-  aspect-ratio: 1;
-  border-radius: 50%;
+  width: min(210px, 58%);
+  aspect-ratio: 0.72 / 1;
+  clip-path: url(#oil-drop-clip);
+  -webkit-clip-path: url(#oil-drop-clip);
   background:
-    radial-gradient(circle at 32% 28%, rgba(223, 243, 192, 0.55) 0%, transparent 42%),
-    radial-gradient(circle at 50% 60%, rgba(var(--brand-rgb), 0.28), rgba(61, 95, 28, 0.45));
+    radial-gradient(circle at 35% 22%, rgba(223, 243, 192, 0.55) 0%, transparent 42%),
+    radial-gradient(circle at 50% 65%, rgba(var(--brand-rgb), 0.28), rgba(61, 95, 28, 0.45));
   box-shadow:
-    0 30px 60px rgba(var(--brand-rgb), 0.28),
     inset 0 -20px 40px rgba(0, 0, 0, 0.12),
     inset 0 12px 24px rgba(255, 255, 255, 0.25);
   position: relative;
@@ -230,9 +241,8 @@ h1 {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 50%;
   background:
-    radial-gradient(circle at 32% 28%, rgba(223, 243, 192, 0.35) 0%, transparent 40%);
+    radial-gradient(circle at 35% 20%, rgba(223, 243, 192, 0.35) 0%, transparent 40%);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
   z-index: 2;
   pointer-events: none;
@@ -241,9 +251,10 @@ h1 {
 .orb::after {
   content: "";
   position: absolute;
-  inset: 18% 22% auto auto;
-  width: 28%;
-  height: 18%;
+  top: 16%;
+  right: 24%;
+  width: 22%;
+  height: 14%;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.45);
   filter: blur(1px);
