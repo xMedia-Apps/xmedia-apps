@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Altöl-Erlösrechner | Test 2</title>
+  <meta name="description" content="Berechnen Sie Ihren möglichen Erlös aus Altöl und Fettentsorgung — 25 Cent pro Liter." />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#f7f6f3" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/test2/styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <span class="mark">Erlösrechner</span>
+      <span class="top-note">Prototyp · nicht öffentlich verlinkt</span>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="kicker">Fett &amp; Altöl</p>
+        <h1>Zahlst du noch für deine Fettentsorgung — oder verdienst du schon daran?</h1>
+        <p class="sub">
+          Stellen Sie Ihren wöchentlichen oder monatlichen Verbrauch ein.
+          Die Kalkulation basiert auf <strong>0,25&nbsp;€ je Liter</strong> Altöl.
+        </p>
+      </section>
+
+      <section class="calc" aria-labelledby="calc-title">
+        <div class="calc-main">
+          <h2 id="calc-title">Verbrauch festlegen</h2>
+
+          <div class="segment" role="group" aria-label="Zeitraum">
+            <button type="button" class="segment-btn is-on" data-period="week" aria-pressed="true">Woche</button>
+            <button type="button" class="segment-btn" data-period="month" aria-pressed="false">Monat</button>
+          </div>
+
+          <label class="field" for="liters">
+            <span class="field-row">
+              <span>Liter Altöl</span>
+              <output id="litersOut" for="liters">0 L</output>
+            </span>
+            <input
+              id="liters"
+              type="range"
+              min="0"
+              max="1000"
+              step="1"
+              value="0"
+              aria-valuemin="0"
+              aria-valuemax="1000"
+              aria-valuenow="0"
+            />
+            <span class="ticks" aria-hidden="true">
+              <span>0</span>
+              <span>250</span>
+              <span>500</span>
+              <span>750</span>
+              <span>1000</span>
+            </span>
+          </label>
+
+          <div class="bar-wrap" aria-hidden="true">
+            <div class="bar" id="bar"></div>
+          </div>
+        </div>
+
+        <aside class="summary">
+          <p class="summary-kicker" id="periodLabel">Erlös / Ersparnis je Woche</p>
+          <p class="summary-amount" id="periodEarn">0,00&nbsp;€</p>
+          <dl class="summary-meta">
+            <div>
+              <dt>Satz</dt>
+              <dd>0,25&nbsp;€ / L</dd>
+            </div>
+            <div>
+              <dt>Jahreswert</dt>
+              <dd id="yearEarn">0,00&nbsp;€</dd>
+            </div>
+          </dl>
+          <p class="summary-note">
+            Unverbindliche Beispielrechnung. Kein Angebot, keine Preisbindung.
+          </p>
+        </aside>
+      </section>
+
+      <section class="points">
+        <article>
+          <h3>Transparent</h3>
+          <p>Einfache Multiplikation: Liter × 25 Cent. Nachvollziehbar in Echtzeit.</p>
+        </article>
+        <article>
+          <h3>Flexibel</h3>
+          <p>Woche oder Monat — der Jahreswert passt sich automatisch an.</p>
+        </article>
+        <article>
+          <h3>Skalierbar</h3>
+          <p>Von wenigen Litern bis 1.000 L Verbrauch in einem Schritt abbilden.</p>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="/test2/app.js"></script>
+</body>
+</html>
