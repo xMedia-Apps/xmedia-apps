@@ -397,77 +397,92 @@
 
   update();
 
-  /* —— WhatsApp chat simulation —— */
-  const waThread = document.getElementById("waThread");
-  const waReplay = document.getElementById("waReplay");
-  let waTimers = [];
-  let waRunning = false;
+  /* —— WhatsApp: zwei getrennte Chats —— */
+  const waScripts = {
+    fresh: [
+      { type: "day", text: "Heute" },
+      {
+        type: "out",
+        text: "Hallo 👋 Wir brauchen <strong>3× 20&nbsp;L Frischöl</strong> — geht das noch heute?",
+        delay: 700,
+        time: "14:01",
+      },
+      { type: "typing", delay: 1200 },
+      {
+        type: "in",
+        text: "Klar! Ist auf Lager. Bestellung ist in <strong>wenigen Sekunden</strong> bestätigt.",
+        delay: 1800,
+        time: "14:02",
+      },
+      { type: "typing", delay: 1100 },
+      {
+        type: "in",
+        text: "✅ <strong>Bestellung #FO-4821</strong> angelegt.<br>Lieferung morgen, 07:00–10:00 Uhr.",
+        delay: 1700,
+        time: "14:02",
+      },
+      {
+        type: "out",
+        text: "Super, danke!",
+        delay: 1000,
+        time: "14:03",
+      },
+      { type: "typing", delay: 800 },
+      {
+        type: "in",
+        text: "Gern — bis morgen 🌿",
+        delay: 1200,
+        time: "14:03",
+      },
+    ],
+    used: [
+      { type: "day", text: "Heute" },
+      {
+        type: "out",
+        text: "Hi, wir hätten ca. <strong>80&nbsp;L Altöl</strong> zur Abholung. Wann geht’s?",
+        delay: 900,
+        time: "14:05",
+      },
+      { type: "typing", delay: 1300 },
+      {
+        type: "in",
+        text: "Passt. Nächster freier Slot ist Dienstagvormittag.",
+        delay: 1700,
+        time: "14:06",
+      },
+      { type: "typing", delay: 1200 },
+      {
+        type: "in",
+        text: "✅ <strong>Termin Di., 22.10. · 09:00–11:00</strong> wurde erstellt.<br>Fahrer meldet sich ca. 30&nbsp;Min. vorher.",
+        delay: 1900,
+        time: "14:06",
+      },
+      {
+        type: "out",
+        text: "Perfekt, ist notiert.",
+        delay: 1000,
+        time: "14:07",
+      },
+      { type: "typing", delay: 800 },
+      {
+        type: "in",
+        text: "Danke — bis Dienstag!",
+        delay: 1200,
+        time: "14:07",
+      },
+    ],
+  };
 
-  const waScript = [
-    { type: "day", text: "Heute" },
-    {
-      type: "out",
-      text: "Hallo 👋 Wir brauchen <strong>3× 20&nbsp;L Frischöl</strong> — geht das noch heute?",
-      delay: 600,
-    },
-    { type: "typing", delay: 900 },
-    {
-      type: "in",
-      text: "Klar! Ist auf Lager. Bestellung ist in <strong>8 Sekunden</strong> raus — Lieferung morgen zwischen 7 und 10 Uhr.",
-      delay: 1400,
-      time: "14:02",
-    },
-    {
-      type: "out",
-      text: "Super. Und unser <strong>Altöl (~80&nbsp;L)</strong> könnt ihr gleich mit abholen?",
-      delay: 1100,
-      time: "14:03",
-    },
-    { type: "typing", delay: 1000 },
-    {
-      type: "in",
-      text: "Erledigt ✅<br><strong>Termin Di., 22.10. · 09:00–11:00</strong> wurde erstellt.<br>Fahrer meldet sich ca. 30&nbsp;Min. vorher.",
-      delay: 1600,
-      time: "14:03",
-    },
-    {
-      type: "out",
-      text: "Perfekt, danke!",
-      delay: 900,
-      time: "14:04",
-    },
-    { type: "typing", delay: 700 },
-    {
-      type: "in",
-      text: "Gern! Frischöl + Abholung in einem Rutsch. Bis dann 🌿",
-      delay: 1200,
-      time: "14:04",
-    },
-  ];
-
-  function clearWaTimers() {
-    waTimers.forEach(clearTimeout);
-    waTimers = [];
-  }
-
-  function waScroll() {
-    if (!waThread) return;
-    waThread.scrollTop = waThread.scrollHeight;
-  }
-
-  function appendWa(node) {
-    waThread.appendChild(node);
-    waScroll();
-  }
+  const waState = {
+    fresh: { timers: [], running: false, thread: document.getElementById("waThreadFresh") },
+    used: { timers: [], running: false, thread: document.getElementById("waThreadUsed") },
+  };
 
   function makeBubble(side, html, time) {
     const el = document.createElement("div");
     el.className = "wa-msg wa-msg--" + side;
     el.innerHTML =
-      "<p>" +
-      html +
-      "</p>" +
-      (time ? "<time>" + time + "</time>" : "");
+      "<p>" + html + "</p>" + (time ? "<time>" + time + "</time>" : "");
     return el;
   }
 
@@ -479,34 +494,43 @@
     return el;
   }
 
-  function playWaChat() {
-    if (!waThread || waRunning) return;
-    waRunning = true;
-    clearWaTimers();
-    waThread.innerHTML = "";
+  function playWaChat(key) {
+    const state = waState[key];
+    const script = waScripts[key];
+    if (!state || !state.thread || !script) return;
+
+    state.timers.forEach(clearTimeout);
+    state.timers = [];
+    state.running = true;
+    state.thread.innerHTML = "";
+
+    function append(node) {
+      state.thread.appendChild(node);
+      state.thread.scrollTop = state.thread.scrollHeight;
+    }
 
     if (prefersReduced) {
-      waScript.forEach(function (step) {
+      script.forEach(function (step) {
         if (step.type === "day") {
           const d = document.createElement("div");
           d.className = "wa-day";
           d.textContent = step.text;
-          appendWa(d);
+          append(d);
         } else if (step.type === "in" || step.type === "out") {
-          appendWa(makeBubble(step.type, step.text, step.time));
+          append(makeBubble(step.type, step.text, step.time));
         }
       });
-      waRunning = false;
+      state.running = false;
       return;
     }
 
     let t = 0;
     let typingEl = null;
 
-    waScript.forEach(function (step) {
-      t += step.delay || 400;
+    script.forEach(function (step) {
+      t += step.delay || 500;
       const at = t;
-      waTimers.push(
+      state.timers.push(
         setTimeout(function () {
           if (typingEl) {
             typingEl.remove();
@@ -516,31 +540,36 @@
             const d = document.createElement("div");
             d.className = "wa-day";
             d.textContent = step.text;
-            appendWa(d);
+            append(d);
           } else if (step.type === "typing") {
             typingEl = makeTyping();
-            appendWa(typingEl);
+            append(typingEl);
           } else if (step.type === "in" || step.type === "out") {
-            appendWa(makeBubble(step.type, step.text, step.time));
+            append(makeBubble(step.type, step.text, step.time));
           }
         }, at)
       );
     });
 
-    waTimers.push(
+    state.timers.push(
       setTimeout(function () {
-        waRunning = false;
-      }, t + 100)
+        state.running = false;
+      }, t + 120)
     );
   }
 
-  if (waThread) {
-    playWaChat();
-    if (waReplay) {
-      waReplay.addEventListener("click", function () {
-        waRunning = false;
-        playWaChat();
-      });
-    }
-  }
+  playWaChat("fresh");
+  // Altöl-Chat etwas verzögert starten, damit nicht parallel überfordert
+  setTimeout(function () {
+    playWaChat("used");
+  }, prefersReduced ? 0 : 2200);
+
+  document.querySelectorAll("[data-wa-replay]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const key = btn.getAttribute("data-wa-replay");
+      if (!key || !waState[key]) return;
+      waState[key].running = false;
+      playWaChat(key);
+    });
+  });
 })();
